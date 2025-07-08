@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ChatMetadata {
+  id                   Int       @id @default(autoincrement())
+  created_at           DateTime  @default(now())
+  full_name            String?
+  last_text_input      String?
+  bot_reply            String?
+  last_seen            DateTime?
+  ig_followers         Int?
+  proposed_reply       String?
+  store_id             Int?
+  customer_type        String?   // 'teen', 'adult', 'senior'
+  sales_intent         String?   // 'browsing', 'comparing', 'buying'
+  device_interest      String?   // 'iPhone 16', 'Samsung Galaxy A15 5G', etc
+  price_sensitivity    String?   // 'high', 'medium', 'low'
+  competitor_mentioned String?   // 'Verizon', 'ATT', 'TMobile'
+  family_plan_interest Boolean?  @default(false)
+  
+  location Location? @relation(fields: [store_id], references: [id])
+
+  @@map("chat_metadata")
+}
+
+model Location {
+  id           Int      @id @default(autoincrement())
+  address      String
+  phone        String?
+  city         String?
+  state        String?  @default("CO")
+  zip_code     String?
+  latitude     Decimal? @db.Decimal(10, 8)
+  longitude    Decimal? @db.Decimal(11, 8)
+  store_manager String?
+  staff_count  Int?     @default(0)
+  created_at   DateTime @default(now())
+  
+  chats ChatMetadata[]
+
+  @@map("locations")
+}
+
+model Product {
+  id         Int      @id @default(autoincrement())
+  name       String
+  brand      String?
+  model      String?
+  price      Decimal? @db.Decimal(10, 2)
+  category   String?  // 'smartphone', 'accessory', 'plan'
+  is_active  Boolean  @default(true)
+  created_at DateTime @default(now())
+
+  @@map("products")
+} 
