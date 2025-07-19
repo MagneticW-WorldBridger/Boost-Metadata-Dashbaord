@@ -18,23 +18,32 @@ import {
   BarChart3, 
   Users2, 
   MessageCircle, 
-  Brain, 
-  TrendingDown,
+  TrendingDown, 
+  AlertCircle,
+  ShoppingCart,
+  Star,
+  ThumbsUp,
   Clock,
+  Zap,
+  Bot,
+  Eye,
+  Edit3,
+  CheckCircle,
+  XCircle,
+  Send,
+  Sofa,
+  Building2,
+  Package,
+  Truck,
+  AlertTriangle,
+  Heart,
+  Hash,
+  ChevronUp,
+  ChevronDown,
   User,
   Smartphone,
-  DollarSign,
-  Zap,
-  CheckCircle,
-  AlertTriangle,
-  Building,
-  Sparkles,
-  X,
-  ChevronDown,
-  ChevronUp,
-  Heart,
-  AlertCircle,
-  Hash
+  Brain,
+  Sparkles
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -225,21 +234,23 @@ export default function Page() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-4">
-                <Image 
-                  src="/boost-mobile-logo.png" 
-                  alt="Boost Mobile" 
-                  width={120} 
-                  height={47}
-                  className="h-12 w-auto"
-                />
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center border border-amber-200">
+                    <Sofa className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h1 className="text-display gradient-text">Hooker Furniture</h1>
+                    <p className="text-subtitle mt-1 text-gray-600">B2B Dealer Analytics & Manufacturing Intelligence</p>
+                  </div>
+                </div>
                 <div className="h-12 w-px bg-gray-300"></div>
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center border border-blue-200">
                     <Activity className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h1 className="text-display gradient-text">Command Center</h1>
-                    <p className="text-subtitle mt-1 text-gray-600">Advanced customer analytics and sales intelligence platform</p>
+                    <h1 className="text-display gradient-text">Analytics Dashboard</h1>
+                    <p className="text-subtitle mt-1 text-gray-600">Real-time dealer insights and inventory management</p>
                   </div>
                 </div>
               </div>
@@ -269,21 +280,21 @@ export default function Page() {
         <Grid numItems={1} numItemsSm={2} numItemsLg={4} className="gap-6">
           <Card className="metric-card">
             <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                    <Users className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <Text className="text-caption text-gray-500">Total Customer Interactions</Text>
-                    <Metric className="text-3xl font-bold text-gray-900">{data.overview.totalConversations}</Metric>
-                  </div>
+                          <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <Building2 className="w-5 h-5 text-blue-600" />
                 </div>
-                <div className="flex items-center space-x-2 text-caption">
-                  <MessageSquare className="w-4 h-4 text-blue-500" />
-                  <span className="text-gray-600">{data.responsePatterns.averageMessagesPerChat.toFixed(1)} messages per conversation</span>
+                <div>
+                  <Text className="text-caption text-gray-500">Total Dealer Interactions</Text>
+                  <Metric className="text-3xl font-bold text-gray-900">{data.overview.totalConversations}</Metric>
                 </div>
               </div>
+              <div className="flex items-center space-x-2 text-caption">
+                <MessageSquare className="w-4 h-4 text-blue-500" />
+                <span className="text-gray-600">{data.responsePatterns.averageMessagesPerChat.toFixed(1)} messages per conversation</span>
+              </div>
+            </div>
             </div>
           </Card>
           
@@ -295,7 +306,7 @@ export default function Page() {
                     <TrendingUp className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <Text className="text-caption text-gray-500">Customer Satisfaction</Text>
+                    <Text className="text-caption text-gray-500">Dealer Satisfaction</Text>
                     <Metric className="text-3xl font-bold text-gray-900">
               {(100 - parseFloat(data.overview.improvementRate)).toFixed(1)}%
             </Metric>
@@ -359,7 +370,7 @@ export default function Page() {
                 <span>Live Command Center</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
-                <Building className="w-4 h-4" />
+                <Building2 className="w-4 h-4" />
                 <span>Store Performance</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
