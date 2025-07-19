@@ -367,15 +367,15 @@ export default function Page() {
             <TabList className="flex space-x-1 bg-gray-50 p-1 rounded-t-xl">
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <Activity className="w-4 h-4" />
-                <span>Live Command Center</span>
+                <span>Live Manufacturing</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <Building2 className="w-4 h-4" />
-                <span>Store Performance</span>
+                <span>Facilities & Dealers</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <Users2 className="w-4 h-4" />
-                <span>Customer Analytics</span>
+                <span>Dealer Analytics</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <MessageCircle className="w-4 h-4" />
@@ -678,9 +678,9 @@ export default function Page() {
                             </div>
                             
                             <div className="flex items-center space-x-3">
-                              <Smartphone className="w-5 h-5 text-purple-500" />
+                              <Sofa className="w-5 h-5 text-purple-500" />
                               <div>
-                                <Text className="text-caption text-gray-500">Device Interest</Text>
+                                <Text className="text-caption text-gray-500">SKU Interest</Text>
                                 <div className="badge-info">{conversation.deviceInterest}</div>
                               </div>
                             </div>
@@ -769,9 +769,9 @@ export default function Page() {
                           </div>
                           
                           <div className="flex items-center space-x-3">
-                            <Smartphone className="w-5 h-5 text-purple-500" />
+                            <Sofa className="w-5 h-5 text-purple-500" />
                             <div>
-                              <Text className="text-caption text-gray-500">Device</Text>
+                              <Text className="text-caption text-gray-500">SKU</Text>
                               <div className="badge-info">{conversation.deviceInterest}</div>
                             </div>
                           </div>
