@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { Card, Title, Text, BarChart, Grid, Metric, List, ListItem, Badge, Tab, TabList, TabGroup, TabPanel, TabPanels, Divider, Button } from '@tremor/react';
-import { ChatView, ChatSummary, ResponsePatternView } from './components/ChatView';
-import type { Message } from './utils/chatParser';
-import { AIChatIntelligence } from './components/AIChatIntelligence';
-import { EnhancedTopicAnalysis } from './components/EnhancedTopicAnalysis';
-import { EnhancedResponsePatterns } from './components/EnhancedResponsePatterns';
-import { StorePerformanceMap } from './components/StorePerformanceMap';
-import { LiveMetricsDashboard } from './components/LiveMetricsDashboard';
+import { ChatView, ChatSummary, ResponsePatternView } from '../components/ChatView';
+import type { Message } from '../utils/chatParser';
+import { AIChatIntelligence } from '../components/AIChatIntelligence';
+import { EnhancedTopicAnalysis } from '../components/EnhancedTopicAnalysis';
+import { EnhancedResponsePatterns } from '../components/EnhancedResponsePatterns';
+import { StorePerformanceMap } from '../components/StorePerformanceMap';
+import { LiveMetricsDashboard } from '../components/LiveMetricsDashboard';
 import { 
   Users, 
   TrendingUp, 
