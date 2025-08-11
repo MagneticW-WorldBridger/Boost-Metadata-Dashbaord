@@ -1,127 +1,117 @@
 import { db } from '@vercel/postgres';
 
-// Hooker Furniture specific conversation categories
+// Rural King farm supply specific conversation categories
 const RESPONSE_CATEGORIES = {
-  CUSTOM_ORDERS: {
-    patterns: ['custom dimensions', 'special size', '96×40', 'custom order'],
-    label: 'Custom Orders',
+  ANIMAL_FEED: {
+    patterns: ['feed', 'nutrition', 'protein', 'vitamins', 'dairy', 'poultry', 'livestock'],
+    label: 'Animal Feed & Nutrition',
     priority: 'high',
-    improvement: 'Provide detailed quote and timeline'
+    improvement: 'Provide detailed feeding guidelines and nutritional advice'
   },
-  WARRANTY_CLAIMS: {
-    patterns: ['seam tear', 'damage', 'warranty', 'defect'],
-    label: 'Warranty Claims',
-    priority: 'urgent',
-    improvement: 'Fast-track replacement process'
-  },
-  FINISH_SAMPLES: {
-    patterns: ['finish sample', 'swatch', 'color options', 'finish guide'],
-    label: 'Finish Samples',
-    priority: 'medium',
-    improvement: 'Send physical samples immediately'
-  },
-  INVENTORY_STATUS: {
-    patterns: ['out of stock', 'in stock', 'lead time', 'availability'],
-    label: 'Inventory Status',
+  TOOLS_EQUIPMENT: {
+    patterns: ['chainsaw', 'tractor', 'battery', 'tools', 'equipment', 'maintenance'],
+    label: 'Tools & Equipment',
     priority: 'high',
-    improvement: 'Provide accurate inventory updates'
+    improvement: 'Offer product demonstrations and maintenance tips'
   },
-  DEALER_RELATIONS: {
-    patterns: ['AOV', 'repeat rate', 'dealer performance', 'rating'],
-    label: 'Dealer Relations',
+  GARDENING: {
+    patterns: ['seeds', 'plants', 'garden', 'soil', 'fertilizer', 'watering'],
+    label: 'Gardening & Landscaping',
     priority: 'medium',
-    improvement: 'Strengthen dealer partnerships'
+    improvement: 'Provide planting guides and seasonal advice'
+  },
+  FENCING: {
+    patterns: ['fence', 'fencing', 'posts', 'wire', 'gates', 'installation'],
+    label: 'Fencing & Construction',
+    priority: 'medium',
+    improvement: 'Offer installation services and material calculations'
+  },
+  WORKWEAR: {
+    patterns: ['boots', 'gloves', 'clothing', 'safety', 'workwear', 'protection'],
+    label: 'Workwear & Safety',
+    priority: 'medium',
+    improvement: 'Ensure proper sizing and safety compliance'
   }
 };
 
 export async function GET() {
   try {
-    // Generate Hooker Furniture analytics data based on HOOKERCONVOS.MD patterns
+    // Generate Rural King farm supply analytics data
     const mockAnalyticsData = {
       overview: {
-        totalConversations: 185, // More realistic daily conversation volume
-        improvementRate: "9.2", // 90.8% satisfaction = 9.2% needing improvement
-        uniqueDealers: 45, // Realistic dealers served per day
-        avgResponseTime: 1.8
+        totalConversations: 245, // Realistic daily conversation volume for farm supply
+        improvementRate: "8.7", // 91.3% satisfaction = 8.7% needing improvement
+        uniqueCustomers: 67, // Realistic customers served per day
+        avgResponseTime: 1.2
       },
       
       responsePatterns: {
-        averageMessagesPerChat: 3.4,
-        responseQuality: 94.2,
-        escalationRate: 8.5,
-        resolutionRate: 91.5
+        averageMessagesPerChat: 3.2,
+        responseQuality: 95.8,
+        escalationRate: 6.3,
+        resolutionRate: 93.7
       },
 
       topicAnalysis: {
         distribution: [
           {
-            topic: 'Finish & Color Availability',
-            totalQueries: 42, // Realistic query volumes
-            categoryScore: 79.0,
-            needsImprovement: 4,
-            storeVisitRate: 22.5
-          },
-          {
-            topic: 'Leather Options & Grades',
-            totalQueries: 36,
-            categoryScore: 72.0,
+            topic: 'Animal Feed & Nutrition',
+            totalQueries: 68, // Realistic query volumes for farm supply
+            categoryScore: 92.0,
             needsImprovement: 3,
-            storeVisitRate: 19.3
+            storeVisitRate: 45.2
           },
           {
-            topic: 'Custom Dimensions Requests',
-            totalQueries: 28,
-            categoryScore: 68.0,
-            needsImprovement: 6,
-            storeVisitRate: 14.8
+            topic: 'Tools & Equipment',
+            totalQueries: 52,
+            categoryScore: 88.0,
+            needsImprovement: 4,
+            storeVisitRate: 38.7
           },
           {
-            topic: 'Warranty Coverage & Claims',
-            totalQueries: 22, // Reduced from 116
-            categoryScore: 75.0,
-            needsImprovement: 8,
-            storeVisitRate: 11.6
-          },
-          {
-            topic: 'Lead Time Estimates',
-            totalQueries: 17, // Reduced from 91
+            topic: 'Gardening & Landscaping',
+            totalQueries: 41,
             categoryScore: 85.0,
-            needsImprovement: 2,
-            storeVisitRate: 9.1
+            needsImprovement: 5,
+            storeVisitRate: 32.1
+          },
+          {
+            topic: 'Fencing & Construction',
+            totalQueries: 28,
+            categoryScore: 82.0,
+            needsImprovement: 6,
+            storeVisitRate: 25.4
+          },
+          {
+            topic: 'Workwear & Safety',
+            totalQueries: 22,
+            categoryScore: 89.0,
+            needsImprovement: 3,
+            storeVisitRate: 18.9
           }
         ]
       },
 
-      // Sample conversation data with Hooker Furniture context
+      // Sample conversation data with Rural King farm supply context
       conversationSamples: [
         {
           id: '1',
-          summary: 'UrbanLoft - Custom order for HF-3124 Savion Deux sofa',
+          summary: 'Customer seeking dairy cow feed advice for 20 Holsteins',
           timestamp: '2025-01-15T10:30:00Z',
-          dealerType: 'Reseller',
-          category: 'Custom Orders',
+          customerType: 'Dairy Farmer',
+          category: 'Animal Feed & Nutrition',
           priority: 'High',
-          sku: 'HF-3124',
+          product: 'Premium Dairy Mix Feed',
           messages: [
             {
-              role: 'dealer',
-              content: 'ModernMakers—we need a Riverton sofa (HF-2008) at 96″ W×40″ D. Quote?',
+              role: 'customer',
+              content: 'Hi! I need help finding the right feed for my dairy cows. I have about 20 Holsteins and they\'re not producing as much milk as usual.',
               timestamp: '2025-01-15T10:30:00Z'
             },
             {
-              role: 'assistant', 
-              content: 'Custom dims are +10%. Base $375 K MTD, so quote is $412.5 K.',
-              timestamp: '2025-01-15T10:30:15Z'
-            },
-            {
-              role: 'dealer',
-              content: 'Email that to me, and send finish samples in "Espresso."',
-              timestamp: '2025-01-15T10:31:00Z'
-            },
-            {
               role: 'assistant',
-              content: 'Sent—quote in your inbox; "Espresso" swatches ship tomorrow.',
-              timestamp: '2025-01-15T10:31:10Z'
+              content: 'Hello! I can definitely help you with dairy cow nutrition. For Holsteins with decreased milk production, I\'d recommend our Premium Dairy Mix with 18% protein.',
+              timestamp: '2025-01-15T10:30:15Z'
             }
           ],
           salesIntent: 'buying',
@@ -130,121 +120,153 @@ export async function GET() {
         },
         {
           id: '2',
-          summary: 'HomeStyle - Warranty claim for HF-1103 Fairfax sofa',
-          timestamp: '2025-01-15T11:45:00Z',
-          dealerType: 'Reseller',
-          category: 'Warranty Claims',
-          priority: 'Urgent',
-          sku: 'HF-1103',
+          summary: 'Customer inquiring about Stihl chainsaws for property maintenance',
+          timestamp: '2025-01-15T11:15:00Z',
+          customerType: 'Property Owner',
+          category: 'Tools & Equipment',
+          priority: 'Medium',
+          product: 'Stihl MS 271 Farm Boss Chainsaw',
           messages: [
             {
-              role: 'dealer',
-              content: 'HomeStyle—my Fairfax sofa (HF-1103) arrived with a seam tear.',
-              timestamp: '2025-01-15T11:45:00Z'
+              role: 'customer',
+              content: 'Do you carry Stihl chainsaws? I need one for cutting firewood and clearing some trees on my property.',
+              timestamp: '2025-01-15T11:15:00Z'
             },
             {
               role: 'assistant',
-              content: 'I\'m sorry to hear that. Can you share PO # and a photo?',
-              timestamp: '2025-01-15T11:45:10Z'
-            },
-            {
-              role: 'dealer',
-              content: 'PO# HS-321, sent photo.',
-              timestamp: '2025-01-15T11:46:00Z'
-            },
-            {
-              role: 'assistant',
-              content: 'Tagged as "Fabric defect" (7.1% of returns). Replacement ships in 5 days.',
-              timestamp: '2025-01-15T11:46:15Z'
+              content: 'Yes, we carry a full line of Stihl chainsaws! For firewood and tree clearing, I\'d recommend the MS 271 Farm Boss with 20" bar.',
+              timestamp: '2025-01-15T11:15:08Z'
             }
           ],
-          salesIntent: 'support',
-          satisfactionScore: 4.5,
+          salesIntent: 'buying',
+          satisfactionScore: 4.6,
           resolved: true
         }
       ],
 
-      // Top performing SKUs from conversation data
-      topPerformingSKUs: [
-        { sku: 'HF-3124', name: 'Savion Deux', mentions: 230, revenue: 425000 },
-        { sku: 'HF-5560', name: 'Jericho Power', mentions: 195, revenue: 390000 },
-        { sku: 'HF-2008', name: 'Riverton', mentions: 162, revenue: 375000 },
-        { sku: 'HF-4812', name: 'Nelson Zero-G', mentions: 148, revenue: 350000 },
-        { sku: 'HF-1103', name: 'Fairfax', mentions: 123, revenue: 332000 }
+      // Top performing products from conversation data
+      topPerformingProducts: [
+        { sku: 'RK-DM-001', name: 'Premium Dairy Mix Feed', mentions: 156, revenue: 28400 },
+        { sku: 'RK-SC-271', name: 'Stihl MS 271 Farm Boss', mentions: 89, revenue: 35600 },
+        { sku: 'RK-OS-001', name: 'Organic Seed Starter Pack', mentions: 134, revenue: 20100 },
+        { sku: 'RK-TB-26R', name: 'Interstate MT-26R Battery', mentions: 67, revenue: 6030 },
+        { sku: 'RK-HF-001', name: 'Horse Guard No-Climb Fencing', mentions: 45, revenue: 144000 }
       ],
 
-      // Dealer performance categories
+      // Customer performance categories
       topKeywordsByCategory: [
-        { category: 'Custom Orders', keywords: ['custom dimensions', '96×40', 'special order'], frequency: 148 },
-        { category: 'Finish Samples', keywords: ['finish sample', 'swatch', 'Espresso'], frequency: 225 },
-        { category: 'Warranty Claims', keywords: ['seam tear', 'damage', 'defect'], frequency: 116 },
-        { category: 'Inventory', keywords: ['out of stock', 'lead time', 'availability'], frequency: 169 },
-        { category: 'Dealer Performance', keywords: ['AOV', 'repeat rate', 'rating'], frequency: 65 }
+        { category: 'Animal Feed', keywords: ['dairy feed', 'protein', 'nutrition', 'Holsteins'], frequency: 234 },
+        { category: 'Tools', keywords: ['chainsaw', 'tractor', 'battery', 'maintenance'], frequency: 189 },
+        { category: 'Gardening', keywords: ['seeds', 'organic', 'planting', 'soil'], frequency: 167 },
+        { category: 'Fencing', keywords: ['horse fence', 'installation', 'materials', 'acres'], frequency: 98 },
+        { category: 'Workwear', keywords: ['work boots', 'waterproof', 'safety', 'comfort'], frequency: 76 }
       ],
 
-      // Peak conversation times
-      peakPerformanceTimes: [
-        { hour: '10:00', conversations: 182, efficiency: 96.8 }, // Monday 10-11 AM peak
-        { hour: '14:00', conversations: 176, efficiency: 95.9 }, // Tuesday 2-3 PM
-        { hour: '11:00', conversations: 168, efficiency: 94.2 },
-        { hour: '15:00', conversations: 162, efficiency: 93.7 },
-        { hour: '09:00', conversations: 157, efficiency: 92.6 }
-      ],
-
-      // Store visit requirements for dealer support
+      // Store visit requirements by topic
       storeVisitRequirements: [
         {
-          topic: 'Custom Furniture Specifications',
-          totalConversations: 48,
-          storeVisitRate: 72.5,
-          needStoreVisits: 35,
-          priority: 'High'
+          topic: 'Tools & Equipment',
+          totalConversations: 52,
+          storeVisitRate: 38.7,
+          needStoreVisits: 20,
+          priority: 'high'
         },
         {
-          topic: 'Fabric & Finish Selection',
-          totalConversations: 62,
-          storeVisitRate: 58.1,
-          needStoreVisits: 36,
-          priority: 'Medium'
+          topic: 'Fencing & Construction',
+          totalConversations: 28,
+          storeVisitRate: 25.4,
+          needStoreVisits: 21,
+          priority: 'high'
         },
         {
-          topic: 'Complex Warranty Claims',
-          totalConversations: 29,
-          storeVisitRate: 89.7,
-          needStoreVisits: 26,
-          priority: 'Critical'
+          topic: 'Workwear & Safety',
+          totalConversations: 22,
+          storeVisitRate: 18.9,
+          needStoreVisits: 18,
+          priority: 'medium'
         },
         {
-          topic: 'Multi-Piece Set Coordination',
+          topic: 'Animal Feed',
+          totalConversations: 68,
+          storeVisitRate: 45.2,
+          needStoreVisits: 37,
+          priority: 'medium'
+        },
+        {
+          topic: 'Gardening',
           totalConversations: 41,
-          storeVisitRate: 65.9,
-          needStoreVisits: 27,
-          priority: 'High'
+          storeVisitRate: 32.1,
+          needStoreVisits: 28,
+          priority: 'low'
         }
       ],
 
       // Customer sentiment analysis
       customerSentiment: {
-        totalAnalyzed: 185,
-        positive: 142,
-        neutral: 31,
-        negative: 12,
+        totalAnalyzed: 245,
+        positive: 178,
+        neutral: 45,
+        negative: 22,
         trends: {
-          weekOverWeek: '+3.2%',
-          satisfaction: '92.4%',
-          alerts: [
-            'Increase in custom order complexity',
-            'Lead time concerns in NC region',
-            'Finish sample requests up 15%'
-          ]
+          weekOverWeek: '+5.2%',
+          satisfaction: '91.3%',
+          alerts: ['High demand for spring gardening supplies', 'Tractor battery inquiries up 23%']
         }
+      },
+
+      // Peak performance times
+      peakPerformanceTimes: [
+        { hour: '9:00 AM', conversations: 28, efficiency: 94.2 },
+        { hour: '10:00 AM', conversations: 35, efficiency: 91.8 },
+        { hour: '11:00 AM', conversations: 42, efficiency: 89.5 },
+        { hour: '12:00 PM', conversations: 38, efficiency: 87.2 },
+        { hour: '1:00 PM', conversations: 31, efficiency: 92.1 },
+        { hour: '2:00 PM', conversations: 29, efficiency: 90.7 },
+        { hour: '3:00 PM', conversations: 26, efficiency: 88.9 },
+        { hour: '4:00 PM', conversations: 16, efficiency: 85.4 }
+      ],
+
+      // Enhanced response patterns
+      enhancedResponsePatterns: {
+        categories: [
+          {
+            type: 'Product Recommendations',
+            examples: [
+              {
+                query: 'Need feed for dairy cows',
+                response: 'Premium Dairy Mix with 18% protein, 30-35 lbs daily for optimal production',
+                timestamp: '2025-01-15T10:30:00Z'
+              },
+              {
+                query: 'Looking for chainsaw for firewood',
+                response: 'Stihl MS 271 Farm Boss, 20" bar, $399.99 with 2-year warranty',
+                timestamp: '2025-01-15T11:15:00Z'
+              }
+            ]
+          },
+          {
+            type: 'Technical Support',
+            examples: [
+              {
+                query: 'Tractor won\'t start',
+                response: 'Check battery - Group 26R for John Deere 3038E, Interstate MT-26R in stock',
+                timestamp: '2025-01-15T15:45:00Z'
+              },
+              {
+                query: 'Horse fencing recommendations',
+                response: 'Horse Guard No-Climb fencing, 1,800 feet for 5 acres, $3,200 materials',
+                timestamp: '2025-01-15T16:30:00Z'
+              }
+            ]
+          }
+        ],
+        averageMessagesPerChat: 3.2
       }
     };
 
     return Response.json(mockAnalyticsData);
-
   } catch (error) {
-    console.error('Analytics API error:', error);
-    return Response.json({ error: 'Failed to fetch analytics data' }, { status: 500 });
+    console.error('Error in analytics API:', error);
+    return Response.json({ error: 'Failed to load analytics data' }, { status: 500 });
   }
 } 

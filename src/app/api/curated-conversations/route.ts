@@ -2,37 +2,37 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    // Realistic Hooker Furniture dealer conversations based on HOOKERCONVOS.MD
+    // Realistic Rural King farm supply customer conversations
     const curatedConversations = {
       detailedConversations: [
         {
           messages: [
             {
               role: 'user',
-              content: 'DécorPoint here—HF-3124 "Savion Deux" is out of stock. ETA?',
+              content: 'Hi! I need help finding the right feed for my dairy cows. I have about 20 Holsteins and they\'re not producing as much milk as usual.',
               timestamp: '2025-01-15T10:30:00Z'
             },
             {
               role: 'bot',
-              content: 'Checking… Martinsville plant expects 40 units by July 18.',
+              content: 'Hello! I can definitely help you with dairy cow nutrition. For Holsteins with decreased milk production, I\'d recommend our Premium Dairy Mix with 18% protein. How much are they currently eating per day?',
               timestamp: '2025-01-15T10:30:15Z'
             },
             {
               role: 'user',
-              content: 'Perfect. Reserve 15 for me, please.',
+              content: 'They\'re getting about 25 pounds each per day. Should I increase that?',
               timestamp: '2025-01-15T10:30:45Z'
             },
             {
               role: 'bot',
-              content: 'Done—15 units of HF-3124 are flagged under your PO.',
+              content: 'Yes, for optimal milk production, Holsteins typically need 30-35 pounds daily. I\'d suggest gradually increasing to 30 pounds over the next week. We have the Premium Dairy Mix in stock at your local store.',
               timestamp: '2025-01-15T10:30:55Z'
             }
           ],
-          summary: 'DécorPoint successfully reserved 15 units of HF-3124 Savion Deux sofa with delivery scheduled for July 18',
+          summary: 'Customer seeking dairy cow feed advice for 20 Holsteins with decreased milk production - recommended Premium Dairy Mix with feeding guidelines',
           originalTimestamp: '2025-01-15T10:30:00Z',
-          customerType: 'Authorized Dealer',
+          customerType: 'Dairy Farmer',
           salesIntent: 'buying',
-          deviceInterest: 'HF-3124 Savion Deux',
+          deviceInterest: 'Premium Dairy Mix Feed',
           storeId: 1,
           competitorMentioned: null,
           priceSensitivity: 'medium',
@@ -42,63 +42,63 @@ export async function GET() {
           messages: [
             {
               role: 'user',
-              content: 'UrbanLoft—what\'s our average order value for July?',
+              content: 'Do you carry Stihl chainsaws? I need one for cutting firewood and clearing some trees on my property.',
               timestamp: '2025-01-15T11:15:00Z'
             },
             {
               role: 'bot',
-              content: 'Your AOV is $892. Would you like it broken down by top SKUs?',
+              content: 'Yes, we carry a full line of Stihl chainsaws! For firewood and tree clearing, I\'d recommend the MS 271 Farm Boss with 20" bar. It\'s perfect for property maintenance. What size trees are you typically cutting?',
               timestamp: '2025-01-15T11:15:08Z'
             },
             {
               role: 'user',
-              content: 'Yes, please—top three.',
+              content: 'Mostly 12-18 inch diameter oaks and maples. Sometimes bigger ones when they fall in storms.',
               timestamp: '2025-01-15T11:15:30Z'
             },
             {
               role: 'bot',
-              content: 'HF-3124 $1,020; HF-5560 $975; HF-2008 $938.',
+              content: 'Perfect! The MS 271 Farm Boss will handle those easily. It\'s $399.99 and comes with a 2-year warranty. We have it in stock at your local store. Would you like me to check if we have any current promotions?',
               timestamp: '2025-01-15T11:15:40Z'
             }
           ],
-          summary: 'UrbanLoft reviewed their performance metrics showing $892 AOV with top SKUs identified',
+          summary: 'Customer inquired about Stihl chainsaws for firewood and tree clearing - recommended MS 271 Farm Boss with pricing and availability',
           originalTimestamp: '2025-01-15T11:15:00Z',
-          customerType: 'Premium Dealer',
-          salesIntent: 'analyzing',
-          deviceInterest: 'Performance Analytics',
+          customerType: 'Property Owner',
+          salesIntent: 'buying',
+          deviceInterest: 'Stihl MS 271 Farm Boss Chainsaw',
           storeId: 2,
           competitorMentioned: null,
-          priceSensitivity: 'low',
+          priceSensitivity: 'medium',
           familyPlanInterest: false
         },
         {
           messages: [
             {
               role: 'user',
-              content: 'ModernMakers—we need a Riverton sofa (HF-2008) at 96″ W×40″ D. Quote?',
+              content: 'I\'m looking for organic vegetable seeds. I want to start a garden this spring and need tomatoes, peppers, and cucumbers. What varieties do you recommend for beginners?',
               timestamp: '2025-01-15T14:20:00Z'
             },
             {
               role: 'bot',
-              content: 'Custom dims are +10%. Base $375K MTD, so quote is $412.5K.',
+              content: 'Great choice! For beginners, I recommend our Organic Seed Starter Pack. It includes Early Girl tomatoes (great for beginners), California Wonder peppers (mild and productive), and Straight Eight cucumbers (disease-resistant). When do you plan to start planting?',
               timestamp: '2025-01-15T14:20:12Z'
             },
             {
               role: 'user',
-              content: 'Email that to me, and send finish samples in "Espresso."',
+              content: 'I\'m thinking early March. Should I start them indoors first?',
               timestamp: '2025-01-15T14:20:45Z'
             },
             {
               role: 'bot',
-              content: 'Sent—quote in your inbox; "Espresso" swatches ship tomorrow.',
+              content: 'Yes, absolutely! Start tomatoes and peppers indoors 6-8 weeks before your last frost date. We have seed starting trays and organic potting mix. The cucumbers can go directly in the ground in March. Would you like me to add those supplies to your order?',
               timestamp: '2025-01-15T14:20:55Z'
             }
           ],
-          summary: 'ModernMakers requested custom dimensions for HF-2008 Riverton sofa with quote and finish samples provided',
+          summary: 'Customer seeking organic vegetable seeds for beginner garden - recommended starter pack with planting advice and additional supplies',
           originalTimestamp: '2025-01-15T14:20:00Z',
-          customerType: 'Regional Dealer',
+          customerType: 'Home Gardener',
           salesIntent: 'buying',
-          deviceInterest: 'HF-2008 Riverton Custom',
+          deviceInterest: 'Organic Vegetable Seeds & Supplies',
           storeId: 3,
           competitorMentioned: null,
           priceSensitivity: 'medium',
@@ -108,30 +108,30 @@ export async function GET() {
           messages: [
             {
               role: 'user',
-              content: 'HomeStyle—my Fairfax sofa (HF-1103) arrived with a seam tear.',
+              content: 'My John Deere tractor won\'t start. I think it might be the battery. Do you carry tractor batteries and can you help me figure out which one I need?',
               timestamp: '2025-01-15T15:45:00Z'
             },
             {
               role: 'bot',
-              content: 'I\'m sorry to hear that. Can you share PO # and a photo?',
+              content: 'I can definitely help! We carry Interstate tractor batteries. What model John Deere do you have? That will help me determine the correct battery size and specifications.',
               timestamp: '2025-01-15T15:45:08Z'
             },
             {
               role: 'user',
-              content: 'PO# HS-321, sent photo.',
+              content: 'It\'s a 2018 John Deere 3038E compact utility tractor.',
               timestamp: '2025-01-15T15:46:00Z'
             },
             {
               role: 'bot',
-              content: 'Tagged as "Fabric defect" (7.1% of returns). Replacement ships in 5 days.',
+              content: 'Perfect! For the John Deere 3038E, you\'ll need a Group 26R battery. We have the Interstate MT-26R in stock for $89.99. It\'s a maintenance-free battery with 500 CCA. Would you like me to check if we have it at your nearest store?',
               timestamp: '2025-01-15T15:46:15Z'
             }
           ],
-          summary: 'HomeStyle warranty claim for HF-1103 Fairfax sofa resolved with replacement unit scheduled',
+          summary: 'Customer with John Deere 3038E tractor battery issue - identified correct Group 26R battery with pricing and availability',
           originalTimestamp: '2025-01-15T15:45:00Z',
-          customerType: 'Authorized Dealer',
-          salesIntent: 'support',
-          deviceInterest: 'HF-1103 Fairfax',
+          customerType: 'Tractor Owner',
+          salesIntent: 'buying',
+          deviceInterest: 'Interstate MT-26R Tractor Battery',
           storeId: 4,
           competitorMentioned: null,
           priceSensitivity: 'high',
@@ -141,30 +141,30 @@ export async function GET() {
           messages: [
             {
               role: 'user',
-              content: 'ArtisanWorks—lead time on Nelson Zero Gravity (HF-4812) jumped to 5 days?',
+              content: 'I need to fence in about 5 acres for my horses. What type of fencing material would you recommend? I want something that\'s safe for horses but won\'t break the bank.',
               timestamp: '2025-01-15T16:30:00Z'
             },
             {
               role: 'bot',
-              content: 'Correct. Last week\'s average was 5.1 days (vs. 4.2 usual) due to backlog.',
+              content: 'For horses, I recommend our Horse Guard No-Climb fencing. It\'s specifically designed for equine safety with small openings that prevent hoof entrapment. For 5 acres, you\'ll need approximately 1,800 feet of fencing. What\'s your budget range?',
               timestamp: '2025-01-15T16:30:10Z'
             },
             {
               role: 'user',
-              content: 'Any plan to bring it down?',
+              content: 'I\'d like to keep it under $5,000 if possible. Do you have any installation services or is it DIY?',
               timestamp: '2025-01-15T16:30:25Z'
             },
             {
               role: 'bot',
-              content: 'Yes—extra shift added; expect 4 days again by next week.',
+              content: 'The Horse Guard fencing will run about $3,200 for materials, keeping you well under budget. We offer installation services for an additional $1,200, or you can DIY. We have installation guides and all the tools you\'ll need. Would you like me to calculate the exact materials list?',
               timestamp: '2025-01-15T16:30:35Z'
             }
           ],
-          summary: 'ArtisanWorks inquired about increased lead times for HF-4812 with production update provided',
+          summary: 'Customer planning 5-acre horse fencing project - recommended Horse Guard No-Climb fencing with material and installation options',
           originalTimestamp: '2025-01-15T16:30:00Z',
-          customerType: 'Boutique Dealer',
+          customerType: 'Horse Owner',
           salesIntent: 'planning',
-          deviceInterest: 'HF-4812 Nelson Zero-G',
+          deviceInterest: 'Horse Guard No-Climb Fencing',
           storeId: 5,
           competitorMentioned: null,
           priceSensitivity: 'medium',
@@ -174,58 +174,63 @@ export async function GET() {
           messages: [
             {
               role: 'user',
-              content: 'ClassicDesigns—our SLA dipped below 90% on July 2. Why?',
+              content: 'I\'m looking for a good quality work boot for farm work. I spend a lot of time in muddy conditions and need something waterproof and comfortable for long days.',
               timestamp: '2025-01-15T17:15:00Z'
             },
             {
               role: 'bot',
-              content: 'SLA was 88.7%—two agents were out sick. We added temps and recovered to 95%.',
+              content: 'For farm work in muddy conditions, I recommend our Wolverine Overpass work boots. They\'re waterproof, have excellent traction, and are designed for all-day comfort. What size do you wear? We have them in stock in most sizes.',
               timestamp: '2025-01-15T17:15:12Z'
             },
             {
               role: 'user',
-              content: 'Good—thanks for the quick remedy.',
+              content: 'I wear a size 11. Do you have them in wide width?',
               timestamp: '2025-01-15T17:15:30Z'
+            },
+            {
+              role: 'bot',
+              content: 'Yes! We have the Wolverine Overpass in size 11W. They\'re $149.99 and come with a 1-year warranty. They\'re perfect for your needs - waterproof, slip-resistant, and comfortable for long days. Would you like me to check if we have them at your local store?',
+              timestamp: '2025-01-15T17:15:40Z'
             }
           ],
-          summary: 'ClassicDesigns service level inquiry resolved with explanation of temporary staffing issue',
+          summary: 'Customer seeking waterproof work boots for farm work - recommended Wolverine Overpass boots with sizing and availability check',
           originalTimestamp: '2025-01-15T17:15:00Z',
-          customerType: 'Premium Dealer',
-          salesIntent: 'monitoring',
-          deviceInterest: 'Service Quality',
+          customerType: 'Farm Worker',
+          salesIntent: 'buying',
+          deviceInterest: 'Wolverine Overpass Work Boots',
           storeId: 6,
           competitorMentioned: null,
-          priceSensitivity: 'low',
+          priceSensitivity: 'medium',
           familyPlanInterest: false
         },
         {
           messages: [
             {
               role: 'user',
-              content: 'Can I book a showroom tour at Las Vegas Market?',
+              content: 'I need to buy some chicken feed. I have about 25 laying hens and want to make sure they\'re getting the right nutrition for good egg production.',
               timestamp: '2025-01-15T18:00:00Z'
             },
             {
               role: 'bot',
-              content: 'Slots open July 24 at 10 AM or 3 PM. Which works?',
+              content: 'For laying hens, I recommend our Layer Pellets with 16% protein and added calcium for strong eggshells. With 25 hens, you\'ll need about 100 pounds per month. We have it in 50-pound bags for $18.99 each. How many bags would you like?',
               timestamp: '2025-01-15T18:00:08Z'
             },
             {
               role: 'user',
-              content: '3 PM.',
+              content: 'I\'ll take 2 bags to start. Do you also carry scratch grains for treats?',
               timestamp: '2025-01-15T18:00:20Z'
             },
             {
               role: 'bot',
-              content: 'Confirmed—Zoom link and directions sent.',
+              content: 'Yes! We have scratch grains in 25-pound bags for $12.99. It\'s great for treats and encourages natural foraging behavior. I\'ll add 2 bags of Layer Pellets and 1 bag of scratch grains to your order. Your total will be $50.97. Would you like me to check store availability?',
               timestamp: '2025-01-15T18:00:30Z'
             }
           ],
-          summary: 'Designer scheduled Las Vegas Market showroom tour for July 24 at 3 PM',
+          summary: 'Customer purchasing chicken feed for 25 laying hens - ordered Layer Pellets and scratch grains with nutritional guidance',
           originalTimestamp: '2025-01-15T18:00:00Z',
-          customerType: 'Interior Designer',
-          salesIntent: 'exploring',
-          deviceInterest: 'Showroom Experience',
+          customerType: 'Chicken Owner',
+          salesIntent: 'buying',
+          deviceInterest: 'Layer Pellets & Scratch Grains',
           storeId: 7,
           competitorMentioned: null,
           priceSensitivity: 'medium',
@@ -235,25 +240,30 @@ export async function GET() {
           messages: [
             {
               role: 'user',
-              content: 'I\'m a homeowner—want to buy the Big Sky console (HF-6677). Closest is Raleigh (4.4⭐), but UrbanLoft (4.8⭐) is in Greensboro. Route me?',
+              content: 'I\'m looking for a good quality garden hose that won\'t kink easily. I have a large garden and need something durable that will last several seasons.',
               timestamp: '2025-01-15T19:30:00Z'
             },
             {
               role: 'bot',
-              content: 'Routing to UrbanLoft (4.8⭐, 215 reviews). Contact details sent. Post-routing CSAT: 89.5%.',
+              content: 'For durability and kink resistance, I recommend our Flexzilla garden hoses. They\'re made with a special polymer that prevents kinking and are guaranteed for life. What length do you need? We have them in 25, 50, and 100 feet.',
               timestamp: '2025-01-15T19:30:15Z'
             },
             {
               role: 'user',
-              content: 'Thanks!',
+              content: 'I think 50 feet would be perfect. What\'s the price and do you have them in stock?',
               timestamp: '2025-01-15T19:30:25Z'
+            },
+            {
+              role: 'bot',
+              content: 'The Flexzilla 50-foot garden hose is $39.99 and we have them in stock at your local store. They come in green and come with brass fittings. They\'re perfect for heavy garden use and won\'t kink or tangle. Would you like me to check if we have your preferred color in stock?',
+              timestamp: '2025-01-15T19:30:35Z'
             }
           ],
-          summary: 'Consumer routed to highest-rated dealer UrbanLoft for HF-6677 Big Sky console purchase',
+          summary: 'Customer seeking durable garden hose for large garden - recommended Flexzilla 50-foot hose with lifetime guarantee and color options',
           originalTimestamp: '2025-01-15T19:30:00Z',
-          customerType: 'Direct Consumer',
+          customerType: 'Home Gardener',
           salesIntent: 'buying',
-          deviceInterest: 'HF-6677 Big Sky Console',
+          deviceInterest: 'Flexzilla Garden Hose',
           storeId: 8,
           competitorMentioned: null,
           priceSensitivity: 'medium',
