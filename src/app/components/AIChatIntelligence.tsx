@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Brain, Sparkles, Send, X, Minimize2, User, Bot, Lightbulb, Zap, TrendingUp, MessageSquare, Star, Clock } from 'lucide-react';
+import DOMPurify from 'dompurify';
 
 type ChatMessage = {
   id: string;
@@ -34,37 +35,37 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
 
   const suggestedQueries = [
     {
-      text: "What do people talk about most?",
+      text: "What are the most common dealer inquiries?",
       category: "Topics",
       icon: MessageSquare,
       color: "blue"
     },
     {
-      text: "How many customers are switching from other carriers?",
-      category: "Competition", 
+      text: "Which SKUs are dealers most interested in?",
+      category: "Products", 
       icon: TrendingUp,
       color: "orange"
     },
     {
-      text: "What phones are customers most interested in?",
-      category: "Devices",
+      text: "What are the main warranty claim issues?",
+      category: "Support",
       icon: Zap,
       color: "purple"
     },
     {
-      text: "How many family plan inquiries do we get?",
-      category: "Plans",
+      text: "How many custom order requests do we get?",
+      category: "Orders",
       icon: Star,
       color: "green"
     },
     {
-      text: "What are the main customer concerns?",
+      text: "What are the top dealer concerns?",
       category: "Issues",
       icon: Lightbulb,
       color: "amber"
     },
     {
-      text: "Which customers seem ready to buy?",
+      text: "Which dealers seem ready to place large orders?",
       category: "Sales",
       icon: TrendingUp,
       color: "emerald"
@@ -99,6 +100,38 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
     adjustTextareaHeight();
   }, [query]);
 
+  // Function to clean markdown code blocks from AI response
+  const cleanMarkdownCodeBlocks = (content: string) => {
+    // Remove ```html at the beginning
+    let cleaned = content.replace(/^```html\s*/i, '');
+    // Remove ``` at the end
+    cleaned = cleaned.replace(/\s*```$/i, '');
+    return cleaned.trim();
+  };
+
+  // Function to safely render HTML content
+  const renderHTML = (content: string) => {
+    const sanitizedHTML = DOMPurify.sanitize(content, {
+      ALLOWED_TAGS: [
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'p', 'br', 'div', 'span',
+        'ul', 'ol', 'li',
+        'strong', 'em', 'b', 'i',
+        'code', 'pre',
+        'blockquote',
+        'table', 'thead', 'tbody', 'tr', 'th', 'td',
+        'a',
+        'mark', 'del', 'ins',
+        'sub', 'sup',
+        'hr'
+      ],
+      ALLOWED_ATTR: ['href', 'target', 'class', 'id', 'style'],
+      ALLOW_DATA_ATTR: false
+    });
+    
+    return { __html: sanitizedHTML };
+  };
+
   async function handleSendMessage(messageText?: string) {
     const textToSend = messageText || query;
     if (!textToSend.trim()) return;
@@ -116,7 +149,7 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
     setError(null);
 
     try {
-      const result = await fetch('https://fotostesia.duckdns.org/webhook/f268f58e-eeb3-4fa2-ab9c-6d3ea738bd8d', {
+      const result = await fetch('https://fotostesia.duckdns.org/webhook/deb0ffc5-fad5-4853-b1d5-ca7f0f451159', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +163,7 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data[0].output,
+        content: cleanMarkdownCodeBlocks(data[0].output),
         timestamp: new Date()
       };
 
@@ -198,10 +231,11 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
                 )}
               </div>
               
-              <div className={`ai-message-bubble ${message.role}`}>
-                <div className="text-base leading-relaxed">
-                  {message.content}
-                </div>
+              <div className={`ai-message-content ${message.role}`}>
+                <div 
+                  className="text-base leading-relaxed"
+                  dangerouslySetInnerHTML={renderHTML(message.content)}
+                />
                 <div className={`flex items-center space-x-1 mt-3 text-xs ${
                   message.role === 'user' ? 'text-white/70' : 'text-gray-600'
                 }`}>
@@ -217,14 +251,14 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
               <div className="ai-avatar assistant">
                 <Brain className="w-5 h-5" />
               </div>
-              <div className="ai-message-bubble assistant">
-                <div className="flex items-center space-x-3">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div className="ai-message-content assistant">
+                <div className="ai-loading">
+                  <div className="ai-loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  <span className="text-gray-600">AI is analyzing your data...</span>
+                  <span>AI is analyzing your data...</span>
                 </div>
               </div>
             </div>
@@ -235,7 +269,7 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
               <div className="ai-avatar assistant">
                 <Brain className="w-5 h-5" />
               </div>
-              <div className="ai-message-bubble assistant border-red-200 bg-red-50">
+              <div className="ai-error">
                 <div className="text-red-700">
                   {error}
                 </div>
@@ -247,25 +281,29 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
         </div>
 
         {/* Input Area */}
-        <div className="ai-chat-input-area">
+        <div className="ai-chat-input">
           {/* Suggestions - Only show if no conversation yet */}
           {messages.length <= 1 && (
             <div className="ai-suggestions">
-              {suggestedQueries.map((suggestion, idx) => {
-                const IconComponent = suggestion.icon;
-                return (
-                  <button
-                    key={idx}
-                    onClick={() => handleSendMessage(suggestion.text)}
-                    className="ai-suggestion group"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <IconComponent className="w-4 h-4" />
+              <h3>
+                <Lightbulb className="w-5 h-5 text-yellow-600" />
+                Suggested Questions
+              </h3>
+              <div className="ai-suggestions-grid">
+                {suggestedQueries.map((suggestion, idx) => {
+                  const IconComponent = suggestion.icon;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => handleSendMessage(suggestion.text)}
+                      className="ai-suggestion-button"
+                    >
+                      <IconComponent className={`ai-suggestion-icon text-${suggestion.color}-600`} />
                       <span>{suggestion.text}</span>
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
 
@@ -276,22 +314,22 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask me anything about your customer data..."
-              className="ai-input"
+              placeholder="Ask me anything about your dealer data..."
+              className="ai-textarea"
               rows={1}
               disabled={isLoading}
             />
             <button
               onClick={() => handleSendMessage()}
               disabled={!query.trim() || isLoading}
-              className="ai-send-button disabled:opacity-50 disabled:cursor-not-allowed"
+              className="ai-send-button"
             >
               <Send className="w-5 h-5" />
             </button>
           </div>
 
           {/* Quick Actions */}
-          <div className="flex items-center justify-between mt-4 text-white/60 text-sm">
+          <div className="flex items-center justify-between mt-4 text-gray-600 text-sm">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-1">
                 <div className="w-2 h-2 bg-green-400 rounded-full"></div>

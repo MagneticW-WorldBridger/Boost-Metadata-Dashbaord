@@ -18,8 +18,6 @@ type FacilityData = {
     state: string;
     address: string;
     type: string;
-    productionCapacity: number;
-    utilizationRate: number;
     revenue: number;
     employeeCount: number;
     lat: number;
@@ -49,8 +47,8 @@ export function StorePerformanceMap() {
       return {
         summary: {
           totalFacilities: 10,
-          totalDealers: 3000,
-          totalRevenue: 1847000, // $1.8M from Q2 data
+          totalDealers: 285, // More realistic authorized dealer count
+          totalRevenue: 847000, // Consistent with daily metrics
           avgDealerRating: 4.6
         },
         topFacilities: [
@@ -61,8 +59,6 @@ export function StorePerformanceMap() {
             state: "VA",
             address: "1000 Furniture Blvd, Martinsville, VA 24112",
             type: "Corporate HQ & Casegoods",
-            productionCapacity: 15000,
-            utilizationRate: 87,
             revenue: 425000,
             employeeCount: 425,
             lat: 36.6904,
@@ -75,8 +71,6 @@ export function StorePerformanceMap() {
             state: "VA", 
             address: "500 Manufacturing Dr, Salem, VA 24153",
             type: "Upholstery Manufacturing",
-            productionCapacity: 8500,
-            utilizationRate: 92,
             revenue: 390000,
             employeeCount: 285,
             lat: 37.2935,
@@ -89,8 +83,6 @@ export function StorePerformanceMap() {
             state: "NC",
             address: "200 Logistics Way, Elkin, NC 28621",
             type: "Primary Distribution",
-            productionCapacity: 12000,
-            utilizationRate: 78,
             revenue: 375000,
             employeeCount: 156,
             lat: 36.2440,
@@ -103,8 +95,6 @@ export function StorePerformanceMap() {
             state: "NC",
             address: "300 Upholstery St, Hickory, NC 28601",
             type: "Bradington-Young Upholstery",
-            productionCapacity: 7200,
-            utilizationRate: 85,
             revenue: 350000,
             employeeCount: 198,
             lat: 35.7344,
@@ -117,8 +107,6 @@ export function StorePerformanceMap() {
             state: "NC",
             address: "400 Market Sq, High Point, NC 27260",
             type: "Trade Showroom",
-            productionCapacity: 0,
-            utilizationRate: 95,
             revenue: 332000,
             employeeCount: 45,
             lat: 35.9557,
@@ -126,18 +114,18 @@ export function StorePerformanceMap() {
           }
         ],
         topProducts: [
-          { sku: "HF-3124", name: "Savion Deux", revenue: 425000, orders: 1240 },
-          { sku: "HF-5560", name: "Jericho Power", revenue: 390000, orders: 1180 },
-          { sku: "HF-2008", name: "Riverton", revenue: 375000, orders: 1095 },
-          { sku: "HF-4812", name: "Nelson Zero-G", revenue: 350000, orders: 1023 },
-          { sku: "HF-1103", name: "Fairfax", revenue: 332000, orders: 987 }
+          { sku: "BRAD-YOUNG", name: "Bradington-Young Leather", revenue: 195000, orders: 340 },
+          { sku: "HF-CUSTOM", name: "HF Custom Upholstery", revenue: 165000, orders: 285 },
+          { sku: "HOOKER-CASE", name: "Hooker Casegoods", revenue: 150000, orders: 245 },
+          { sku: "PULASKI", name: "Pulaski Furniture", revenue: 142000, orders: 220 },
+          { sku: "SHENANDOAH", name: "Shenandoah Furniture", revenue: 95000, orders: 165 }
         ],
         dealerRegions: [
-          { region: "Virginia", dealerCount: 960, totalRevenue: 589600, avgAOV: 892 },
-          { region: "North Carolina", dealerCount: 840, totalRevenue: 478800, avgAOV: 840 },
-          { region: "Georgia", dealerCount: 360, totalRevenue: 293400, avgAOV: 815 },
-          { region: "Texas", dealerCount: 240, totalRevenue: 186720, avgAOV: 778 },
-          { region: "California", dealerCount: 210, totalRevenue: 159600, avgAOV: 760 }
+          { region: 'Southeast (VA/NC/SC)', dealerCount: 85, totalRevenue: 245000, avgAOV: 825 },
+          { region: 'Northeast (NY/NJ/PA)', dealerCount: 72, totalRevenue: 198000, avgAOV: 780 },
+          { region: 'Midwest (IL/IN/OH)', dealerCount: 58, totalRevenue: 165000, avgAOV: 745 },
+          { region: 'Southwest (TX/OK/AR)', dealerCount: 42, totalRevenue: 142000, avgAOV: 695 },
+          { region: 'West Coast (CA/NV/WA)', dealerCount: 28, totalRevenue: 97000, avgAOV: 890 }
         ]
       };
     };
@@ -249,10 +237,6 @@ export function StorePerformanceMap() {
                 <div className="text-right">
                   <Text className="text-gray-500 text-sm">Revenue</Text>
                   <Text className="font-bold">${(facility.revenue / 1000).toFixed(0)}K</Text>
-                </div>
-                <div className="text-right">
-                  <Text className="text-gray-500 text-sm">Utilization</Text>
-                  <Text className="font-bold text-green-600">{facility.utilizationRate}%</Text>
                 </div>
                 <div className="text-right">
                   <Text className="text-gray-500 text-sm">Employees</Text>

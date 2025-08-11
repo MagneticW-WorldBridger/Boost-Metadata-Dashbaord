@@ -1,0 +1,235 @@
+{
+  "name": "Chat with Metadata from CBB (HOOKER FURNITURE)",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.query }}",
+        "options": {
+          "systemMessage": "You are the Hooker Furniture AI Analytics Assistant. You have access to a PostgreSQL database with real Hooker Furniture dealer data, conversations, products, and facilities.\n\nDATABASE SCHEMA & GUIDANCE:\n\n**FACILITIES TABLE** (facilities):\n- Corporate locations, manufacturing plants, showrooms\n- Columns: id, name, address, city, state, facility_type, employee_count\n- Use for: \"Where are your facilities?\", \"Manufacturing locations\", \"Showroom info\"\n\n**PRODUCTS TABLE** (products): \n- Hooker Furniture SKUs and product details\n- Columns: id, sku, name, product_type, description, price\n- Key SKUs: HF-3124 (Savion Deux), HF-5560 (Jericho), HF-2008 (Riverton)\n- Use for: \"Top products\", \"SKU info\", \"Pricing\", \"Product types\"\n\n**DEALERS TABLE** (dealers):\n- Authorized dealer network with performance metrics  \n- Columns: id, name, dealer_type, aov (Average Order Value), repeat_rate, rating, review_count\n- Top dealers: UrbanLoft ($892 AOV), HomeStyle ($840 AOV), DécorPoint ($815 AOV)\n- Use for: \"Dealer performance\", \"AOV analysis\", \"Top dealers\", \"Ratings\"\n\n**KNOWLEDGE_BASE TABLE** (knowledge_base):\n- FAQ articles with effectiveness metrics\n- Columns: id, topic, category, question, answer, usage_count, effectiveness_rate\n- Use for: \"Most effective articles\", \"Self-serve rates\", \"Common questions\"\n\n**CHAT_CONVERSATIONS TABLE** (chat_conversations):\n- Real dealer conversations and interactions\n- Columns: dealer_id, sku_interest, sales_intent, warranty_claim, custom_order, satisfaction_score\n- Use for: \"Conversation analysis\", \"Sales intent\", \"Warranty trends\", \"Satisfaction\"\n\nQUERY EXAMPLES:\n\n📊 **For Dealer Performance:**\n```sql\nSELECT name, aov, repeat_rate, rating \nFROM dealers \nORDER BY aov DESC LIMIT 10;\n```\n\n📈 **For Product Popularity:**\n```sql\nSELECT p.sku, p.name, COUNT(c.id) as mentions\nFROM products p \nLEFT JOIN chat_conversations c ON p.sku = c.sku_interest\nGROUP BY p.sku, p.name \nORDER BY mentions DESC;\n```\n\n🏭 **For Facility Distribution:**\n```sql\nSELECT facility_type, COUNT(*) as count, SUM(employee_count) as total_employees\nFROM facilities \nGROUP BY facility_type;\n```\n\n📞 **For Knowledge Base Effectiveness:**\n```sql\nSELECT topic, effectiveness_rate, usage_count\nFROM knowledge_base \nORDER BY effectiveness_rate DESC;\n```\n\n💬 **For Conversation Insights:**\n```sql\nSELECT sales_intent, COUNT(*) as conversations, \n       AVG(satisfaction_score) as avg_satisfaction\nFROM chat_conversations \nGROUP BY sales_intent;\n```\n\nRESPONSE GUIDELINES:\n- Always provide specific numbers and percentages\n- Reference actual dealer names and SKUs when relevant\n- Calculate meaningful metrics (AOV trends, satisfaction rates, etc.)\n- Suggest actionable insights based on the data\n- Use Hooker Furniture terminology (dealers, not customers; SKUs, not products)\n\n**CRITICAL FORMATTING REQUIREMENT:**\nYou MUST respond using HTML formatting. Your response will be rendered as HTML in a chat interface.\n\n**REQUIRED HTML FORMAT:**\n- Use <h2> for main sections, <h3> for subsections\n- Use <strong> for important metrics and numbers\n- Use <span class=\"metric\"> for key performance indicators\n- Use <span class=\"success\"> for positive trends\n- Use <span class=\"warning\"> for areas needing attention\n- Use <span class=\"error\"> for critical issues\n- Use <blockquote> for insights and recommendations\n- Use <ul> and <li> for lists\n- Use <table> for data comparisons\n- Use <code> for SQL queries or technical details\n- Use <em> for emphasis\n- Use <span class=\"highlight\"> for important highlights\n- Use <p> for paragraphs with proper spacing\n- Use <br> for line breaks when needed\n\n**EXAMPLE RESPONSE FORMAT:**\n<h2>📊 Dealer Performance Analysis</h2>\n<p>Based on your database analysis, here are the key insights:</p>\n\n<h3>🏆 Top Performing Dealers</h3>\n<ul>\n<li><strong>UrbanLoft</strong>: <span class=\"metric\">$892 AOV</span> with <span class=\"success\">48.2% repeat rate</span></li>\n<li><strong>HomeStyle</strong>: <span class=\"metric\">$840 AOV</span> with <span class=\"success\">44.1% repeat rate</span></li>\n</ul>\n\n<blockquote>\n💡 <strong>Recommendation:</strong> Focus on expanding relationships with UrbanLoft and HomeStyle as they show the highest engagement and order values.\n</blockquote>\n\n<h3>📈 Key Metrics</h3>\n<p>Your top dealers show <span class=\"highlight\">excellent performance</span> with average satisfaction scores above <span class=\"metric\">0.85</span>.</p>\n\n**IMPORTANT:** Always structure your response with proper HTML tags. Never respond with plain text. Use the formatting classes provided to create visually appealing responses.\n\nRun custom SQL query to aggregate data and response to user.\n\nFetch all data to analyse it for response if needed, review the tables that are available, see the data for what it is, and perhaps do sql queries where you group things based on logical data structure."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -240,
+        -140
+      ],
+      "id": "482cc1b8-8e6c-4aa5-9082-767880bea5ba",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        160
+      ],
+      "id": "ce95c388-b516-46e9-90e2-f3d5f2b4bd43",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "RQIZW8XfaInLmdob",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').item.json.headers['user-agent'] }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -420,
+        340
+      ],
+      "id": "2086d6fa-3865-4630-959a-fbff9392b17b",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get list of all tables in database",
+        "operation": "executeQuery",
+        "query": "SELECT table_schema, table_name\nFROM information_schema.tables\nWHERE table_type = 'BASE TABLE' AND table_schema = 'public';",
+        "options": {}
+      },
+      "id": "0dc6a2f0-a1ea-4de0-925c-24d4a911dfa5",
+      "name": "DB Schema",
+      "type": "n8n-nodes-base.postgresTool",
+      "position": [
+        -20,
+        220
+      ],
+      "typeVersion": 2.5
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get table definition to find all columns and types.",
+        "operation": "executeQuery",
+        "query": "SELECT \n    c.column_name,\n    c.data_type,\n    c.is_nullable,\n    c.column_default,\n    tc.constraint_type,\n    ccu.table_name AS referenced_table,\n    ccu.column_name AS referenced_column\nFROM \n    information_schema.columns c\nLEFT JOIN \n    information_schema.key_column_usage kcu \n    ON c.table_name = kcu.table_name \n    AND c.column_name = kcu.column_name\nLEFT JOIN \n    information_schema.table_constraints tc \n    ON kcu.constraint_name = tc.constraint_name\n    AND tc.constraint_type = 'FOREIGN KEY'\nLEFT JOIN\n    information_schema.constraint_column_usage ccu\n    ON tc.constraint_name = ccu.constraint_name\nWHERE \n    c.table_name = '{{ $fromAI(\"table_name\") }}' -- Your table name\n    AND c.table_schema = 'public' -- Ensure it's in the right schema\nORDER BY \n    c.ordinal_position;\n",
+        "options": {}
+      },
+      "id": "6afdecba-d8c0-4d79-9f53-b13023f0aff3",
+      "name": "Get table definition",
+      "type": "n8n-nodes-base.postgresTool",
+      "position": [
+        140,
+        220
+      ],
+      "typeVersion": 2.5
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Run custom SQL queries using knowledge about Output structure to provide needed response for user request.\nUse ->> operator to extract JSON data.",
+        "operation": "executeQuery",
+        "query": "{{ $fromAI(\"query\",\"SQL query for PostgreSQL DB in Supabase\") }}",
+        "options": {}
+      },
+      "id": "f1dcb1c8-03d3-4be7-a09f-3b9fde84867f",
+      "name": "Run SQL Query",
+      "type": "n8n-nodes-base.postgresTool",
+      "position": [
+        -200,
+        220
+      ],
+      "typeVersion": 2.5,
+      "credentials": {
+        "postgres": {
+          "id": "gl82HqtSY8p7P9JR",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        -140
+      ],
+      "id": "fb92ff21-d283-4d83-910b-a10c0ccb77b2",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "deb0ffc5-fad5-4853-b1d5-ca7f0f451159",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -140
+      ],
+      "id": "a7248452-d563-4722-a4d7-9af9d68a64e7",
+      "name": "Webhook",
+      "webhookId": "deb0ffc5-fad5-4853-b1d5-ca7f0f451159"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DB Schema": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get table definition": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run SQL Query": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "30cff217-3350-4fb5-93de-5692acb9bd16",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "83e1f2d6e5131b8a1721d4de5e6230aaad1567f9c5aba3fd2becce0afe1a3b5c"
+  },
+  "id": "M7LmSY55SzmK769F",
+  "tags": []
+}

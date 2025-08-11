@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚜 Rural King Farm Supply Analytics Dashboard
 
-## Getting Started
+A comprehensive analytics dashboard for Rural King's 135+ farm supply stores, providing AI-powered insights into customer interactions, product performance, and store operations.
 
-First, run the development server:
+## 🌾 About Rural King
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Rural King is America's Farm and Home Store, operating 135+ locations across 13 states. Founded in 1960, we provide essential farm supplies, tools, feed, seed, and rural lifestyle products to communities nationwide.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Dashboard Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Customer Analytics**: Monitor farm supply conversations and track customer interactions
+- **Store Intelligence**: AI-powered insights into customer sentiment and product preferences  
+- **Farm Supply Insights**: Track product performance, seasonal trends, and customer needs
+- **Live Metrics**: Real-time store performance monitoring across the Rural King network
+- **AI Chat Intelligence**: Advanced conversation analysis and response optimization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Frontend**: Next.js 14, React, TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **Charts**: Tremor React components
+- **Database**: PostgreSQL with Prisma ORM
+- **AI**: OpenAI GPT integration for conversation analysis
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables (see `.env.example`)
+4. Run database migrations: `npx prisma migrate dev`
+5. Start development server: `npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📊 Database Schema
 
-## Deploy on Vercel
+The dashboard uses a flexible schema designed for retail analytics:
+- **ChatMetadata**: Customer interaction tracking
+- **Location**: Store location management  
+- **Product**: Farm supply product catalog
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Design Philosophy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with a farm-themed color palette (greens, ambers, browns) and intuitive UX patterns optimized for retail staff and management teams.
+
+## 📈 Business Intelligence
+
+Transform customer conversations into actionable insights for:
+- Product assortment optimization
+- Seasonal inventory planning
+- Store performance benchmarking
+- Customer satisfaction improvement
+- Staff training opportunities
+
+---
+
+*Empowering Rural King's mission to serve America's rural communities with quality farm supplies and exceptional service.*

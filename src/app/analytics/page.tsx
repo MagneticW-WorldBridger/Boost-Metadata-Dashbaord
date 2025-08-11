@@ -31,7 +31,7 @@ import {
   CheckCircle,
   XCircle,
   Send,
-  Sofa,
+  Tractor,
   Building2,
   Package,
   Truck,
@@ -235,12 +235,12 @@ export default function Page() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center border border-amber-200">
-                    <Sofa className="w-6 h-6 text-amber-600" />
+                  <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center border border-green-200">
+                    <Tractor className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h1 className="text-display gradient-text">Hooker Furniture</h1>
-                    <p className="text-subtitle mt-1 text-gray-600">B2B Dealer Analytics & Manufacturing Intelligence</p>
+                    <h1 className="text-display gradient-text">Rural King</h1>
+                    <p className="text-subtitle mt-1 text-gray-600">Farm Supply Analytics & Store Intelligence</p>
                   </div>
                 </div>
                 <div className="h-12 w-px bg-gray-300"></div>
@@ -367,27 +367,27 @@ export default function Page() {
             <TabList className="flex space-x-1 bg-gray-50 p-1 rounded-t-xl">
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <Activity className="w-4 h-4" />
-                <span>Live Manufacturing</span>
+                <span>Live Dealer Analytics</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <Building2 className="w-4 h-4" />
-                <span>Facilities & Dealers</span>
+                <span>Facilities & Network</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
-                <Users2 className="w-4 h-4" />
-                <span>Dealer Analytics</span>
+                <BarChart3 className="w-4 h-4" />
+                <span>Performance Metrics</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <MessageCircle className="w-4 h-4" />
-                <span>Conversations</span>
+                <span>Dealer Conversations</span>
               </Tab>
               <Tab className="flex items-center space-x-2 px-6 py-3 text-sm font-medium rounded-lg transition-all data-[selected]:bg-white data-[selected]:text-blue-600 data-[selected]:shadow-sm text-gray-600 hover:text-gray-800">
                 <TrendingUp className="w-4 h-4" />
-                <span>Topics & Trends</span>
+                <span>Topics & Insights</span>
               </Tab>
           </TabList>
             
-            <TabPanels className="p-8 bg-white rounded-b-xl">
+            <TabPanels className="bg-white rounded-b-xl" style={{ padding: 'var(--space-34)' }}>
             <TabPanel>
               <LiveMetricsDashboard />
             </TabPanel>
@@ -395,26 +395,26 @@ export default function Page() {
               <StorePerformanceMap />
             </TabPanel>
             <TabPanel>
-                <div className="space-y-8">
-                  {/* Store Visit Requirements */}
+                <div style={{ gap: 'var(--space-34)' }} className="space-y-8">
+                  {/* Dealer Performance Analytics */}
                   {data.storeVisitRequirements && (
-                    <div className="space-y-6">
-                      <div className="section-header">
-                        <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
+                    <div style={{ gap: 'var(--space-21)' }} className="space-y-6">
+                      <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                        <div className="icon-container bg-orange-100">
                           <Target className="w-5 h-5 text-orange-600" />
                         </div>
                         <div>
-                          <h2 className="section-title text-gray-900">Store Visit Requirements by Topic</h2>
-                          <p className="section-subtitle text-gray-600">Analysis of conversations requiring in-person assistance</p>
+                          <h2 className="text-perfect-2xl font-bold text-gray-900">Dealer Support Requirements</h2>
+                          <p className="text-perfect-lg text-gray-600">Analysis of dealer interactions requiring specialized assistance</p>
                         </div>
                       </div>
                       
-                      <Grid numItems={1} numItemsSm={2} numItemsLg={4} className="gap-6">
+                      <Grid numItems={1} numItemsSm={2} numItemsLg={4} style={{ gap: 'var(--space-21)' }}>
                         {data.storeVisitRequirements.map((requirement, idx) => (
-                          <Card key={idx} className="professional-card p-6">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-center space-x-3">
-                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          <Card key={idx} className="card-premium hover-lift" style={{ padding: 'var(--space-21)' }}>
+                            <div className="flex items-center justify-between" style={{ marginBottom: 'var(--space-13)' }}>
+                              <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                                <div className={`icon-container ${
                                   requirement.priority === 'Critical' ? 'bg-red-100' :
                                   requirement.priority === 'High' ? 'bg-orange-100' : 'bg-yellow-100'
                                 }`}>
@@ -424,32 +424,29 @@ export default function Page() {
                                   }`} />
                                 </div>
                                 <div>
-                                  <Title className="text-lg font-semibold text-gray-900">{requirement.topic}</Title>
-                                  <Text className="text-gray-500 text-sm">{requirement.totalConversations} conversations</Text>
+                                  <Title className="text-perfect-lg font-semibold text-gray-900">{requirement.topic}</Title>
+                                  <Text className="text-perfect-sm text-gray-600">{requirement.totalConversations} conversations</Text>
                                 </div>
-                              </div>
-                              <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                requirement.priority === 'Critical' ? 'bg-red-100 text-red-700' :
-                                requirement.priority === 'High' ? 'bg-orange-100 text-orange-700' : 'bg-yellow-100 text-yellow-700'
-                              }`}>
-                                {requirement.priority}
                               </div>
                             </div>
                             
-                            <div className="space-y-3">
+                            <div style={{ gap: 'var(--space-8)' }} className="space-y-2">
                               <div className="flex justify-between items-center">
-                                <Text className="text-gray-600">Store Visit Rate</Text>
-                                <Text className="font-bold text-gray-900">{requirement.storeVisitRate}%</Text>
+                                <Text className="text-perfect-sm text-gray-600">Support Rate</Text>
+                                <Text className="text-perfect-sm font-bold text-blue-600">{requirement.storeVisitRate}%</Text>
                               </div>
                               <div className="flex justify-between items-center">
-                                <Text className="text-gray-600">Need Store Visits</Text>
-                                <Text className="font-bold text-orange-600">{requirement.needStoreVisits}</Text>
+                                <Text className="text-perfect-sm text-gray-600">Need Support</Text>
+                                <Text className="text-perfect-sm font-bold text-orange-600">{requirement.needStoreVisits}</Text>
                               </div>
-                              <div className="w-full bg-gray-200 rounded-full h-2">
-                                <div 
-                                  className="bg-orange-500 h-2 rounded-full" 
-                                  style={{ width: `${requirement.storeVisitRate}%` }}
-                                ></div>
+                              <div className="flex justify-between items-center">
+                                <Text className="text-perfect-sm text-gray-600">Priority</Text>
+                                <div className={`${
+                                  requirement.priority === 'Critical' ? 'status-error' :
+                                  requirement.priority === 'High' ? 'status-warning' : 'status-success'
+                                } px-2 py-1 rounded text-xs font-medium`}>
+                                  {requirement.priority}
+                                </div>
                               </div>
                             </div>
                           </Card>
@@ -458,252 +455,183 @@ export default function Page() {
                     </div>
                   )}
 
-                  {/* Customer Sentiment Analysis */}
+                  {/* Dealer Satisfaction Analytics */}
                   {data.customerSentiment && (
-                    <div className="space-y-6">
-                      <div className="section-header">
-                        <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
-                          <Heart className="w-5 h-5 text-green-600" />
+                    <div style={{ gap: 'var(--space-21)' }} className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                          <div className="icon-container bg-green-100">
+                            <Heart className="w-5 h-5 text-green-600" />
+                          </div>
+                          <div>
+                            <h2 className="text-perfect-2xl font-bold text-gray-900">Dealer Satisfaction Analysis</h2>
+                            <p className="text-perfect-lg text-gray-600">Overall dealer satisfaction and sentiment trends</p>
+                          </div>
                         </div>
-                        <div>
-                          <h2 className="section-title text-gray-900">Customer Sentiment Analysis</h2>
-                          <p className="section-subtitle text-gray-600">Overall customer satisfaction and sentiment trends</p>
-                        </div>
-                        <div className="badge-success flex items-center space-x-2 ml-auto">
+                        <div className="flex items-center status-success" style={{ gap: 'var(--space-8)' }}>
                           <TrendingUp className="w-4 h-4" />
                           <span>{data.customerSentiment.trends.weekOverWeek} WoW</span>
                         </div>
                       </div>
                       
-                      <Grid numItems={1} numItemsSm={2} numItemsLg={4} className="gap-6">
-                        <Card className="professional-card p-6">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <Grid numItems={1} numItemsSm={2} numItemsLg={4} style={{ gap: 'var(--space-21)' }}>
+                        <Card className="card-premium hover-scale" style={{ padding: 'var(--space-21)' }}>
+                          <div className="flex items-center" style={{ gap: 'var(--space-13)', marginBottom: 'var(--space-13)' }}>
+                            <div className="icon-container bg-green-100">
                               <Heart className="w-4 h-4 text-green-600" />
                             </div>
-                            <Text className="text-gray-500">Positive</Text>
+                            <Text className="text-perfect-sm text-gray-500">Positive</Text>
                           </div>
-                          <Metric className="text-green-600 text-2xl font-bold">{data.customerSentiment.positive}</Metric>
-                          <Text className="text-gray-500 text-sm mt-1">
+                          <Metric className="text-green-600 text-perfect-3xl font-bold">{data.customerSentiment.positive}</Metric>
+                          <Text className="text-perfect-sm text-gray-500" style={{ marginTop: 'var(--space-5)' }}>
                             {((data.customerSentiment.positive / data.customerSentiment.totalAnalyzed) * 100).toFixed(1)}%
                           </Text>
                         </Card>
                         
-                        <Card className="professional-card p-6">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                        <Card className="card-premium hover-scale" style={{ padding: 'var(--space-21)' }}>
+                          <div className="flex items-center" style={{ gap: 'var(--space-13)', marginBottom: 'var(--space-13)' }}>
+                            <div className="icon-container bg-yellow-100">
                               <AlertCircle className="w-4 h-4 text-yellow-600" />
                             </div>
-                            <Text className="text-gray-500">Neutral</Text>
+                            <Text className="text-perfect-sm text-gray-500">Neutral</Text>
                           </div>
-                          <Metric className="text-yellow-600 text-2xl font-bold">{data.customerSentiment.neutral}</Metric>
-                          <Text className="text-gray-500 text-sm mt-1">
+                          <Metric className="text-yellow-600 text-perfect-3xl font-bold">{data.customerSentiment.neutral}</Metric>
+                          <Text className="text-perfect-sm text-gray-500" style={{ marginTop: 'var(--space-5)' }}>
                             {((data.customerSentiment.neutral / data.customerSentiment.totalAnalyzed) * 100).toFixed(1)}%
                           </Text>
                         </Card>
                         
-                        <Card className="professional-card p-6">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                        <Card className="card-premium hover-scale" style={{ padding: 'var(--space-21)' }}>
+                          <div className="flex items-center" style={{ gap: 'var(--space-13)', marginBottom: 'var(--space-13)' }}>
+                            <div className="icon-container bg-red-100">
                               <AlertTriangle className="w-4 h-4 text-red-600" />
                             </div>
-                            <Text className="text-gray-500">Negative</Text>
+                            <Text className="text-perfect-sm text-gray-500">Negative</Text>
                           </div>
-                          <Metric className="text-red-600 text-2xl font-bold">{data.customerSentiment.negative}</Metric>
-                          <Text className="text-gray-500 text-sm mt-1">
+                          <Metric className="text-red-600 text-perfect-3xl font-bold">{data.customerSentiment.negative}</Metric>
+                          <Text className="text-perfect-sm text-gray-500" style={{ marginTop: 'var(--space-5)' }}>
                             {((data.customerSentiment.negative / data.customerSentiment.totalAnalyzed) * 100).toFixed(1)}%
                           </Text>
                         </Card>
                         
-                        <Card className="professional-card p-6">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <Users className="w-4 h-4 text-blue-600" />
-                            </div>
-                            <Text className="text-gray-500">Total Analyzed</Text>
-                          </div>
-                          <Metric className="text-blue-600 text-2xl font-bold">{data.customerSentiment.totalAnalyzed}</Metric>
-                          <Text className="text-gray-500 text-sm mt-1">Conversations</Text>
-                        </Card>
-                      </Grid>
-                      
-                      {data.customerSentiment.trends.alerts.length > 0 && (
-                        <Card className="professional-card p-6 border-l-4 border-orange-500">
-                          <div className="flex items-center space-x-3 mb-4">
-                            <AlertTriangle className="w-5 h-5 text-orange-600" />
-                            <Title className="text-lg font-semibold text-gray-900">Attention Required</Title>
-                        </div>
-                          <div className="space-y-2">
-                            {data.customerSentiment.trends.alerts.map((alert, idx) => (
-                              <Text key={idx} className="text-gray-700 flex items-center space-x-2">
-                                <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                                <span>{alert}</span>
-                              </Text>
-                            ))}
-                          </div>
-                        </Card>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Peak Performance Times */}
-                  {data.peakPerformanceTimes && (
-                    <div className="space-y-6">
-                      <div className="section-header">
-                        <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                          <Clock className="w-5 h-5 text-purple-600" />
-                        </div>
-                        <div>
-                          <h2 className="section-title text-gray-900">Peak Performance Times</h2>
-                          <p className="section-subtitle text-gray-600">Hourly conversation volume and efficiency metrics</p>
-                        </div>
-                      </div>
-                      
-                      <Card className="professional-card p-6">
-                        <BarChart
-                          className="h-80"
-                          data={data.peakPerformanceTimes}
-                          index="hour"
-                          categories={["conversations", "efficiency"]}
-                          colors={["blue", "green"]}
-                          valueFormatter={(value) => typeof value === 'number' ? value.toString() : String(value)}
-                        />
-                      </Card>
-                    </div>
-                  )}
-
-                  {/* Top Keywords by Category */}
-                  {data.topKeywordsByCategory && (
-                    <div className="space-y-6">
-                      <div className="section-header">
-                        <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                          <Hash className="w-5 h-5 text-blue-600" />
-                        </div>
-                        <div>
-                          <h2 className="section-title text-gray-900">Top Keywords by Category</h2>
-                          <p className="section-subtitle text-gray-600">Most frequently mentioned keywords across conversation categories</p>
-                        </div>
-                      </div>
-                      
-                      <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-6">
-                        {data.topKeywordsByCategory.map((category, idx) => (
-                          <Card key={idx} className="professional-card p-6">
-                            <div className="flex items-center space-x-3 mb-4">
-                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${getCategoryColor(category.category)}`}>
-                                <Hash className="w-4 h-4" />
+                        {data.customerSentiment.trends.alerts && data.customerSentiment.trends.alerts.length > 0 && (
+                          <Card className="card-premium bg-orange-50 border-orange-200" style={{ padding: 'var(--space-21)' }}>
+                            <div className="flex items-center" style={{ gap: 'var(--space-13)', marginBottom: 'var(--space-13)' }}>
+                              <div className="icon-container bg-orange-100">
+                                <AlertTriangle className="w-4 h-4 text-orange-600" />
                               </div>
-                              <div>
-                                <Title className="text-lg font-semibold text-gray-900 capitalize">{category.category}</Title>
-                                <Text className="text-gray-500 text-sm">{category.frequency} mentions</Text>
-                              </div>
+                              <Text className="text-perfect-sm text-gray-700">Alerts</Text>
                             </div>
-                            
-                            <div className="space-y-2">
-                              {category.keywords.map((keyword, kIdx) => (
-                                <div key={kIdx} className="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
-                                  <Text className="text-gray-700 font-medium">{keyword}</Text>
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                </div>
+                            <div style={{ gap: 'var(--space-8)' }} className="space-y-2">
+                              {data.customerSentiment.trends.alerts.map((alert, idx) => (
+                                <Text key={idx} className="text-perfect-sm text-gray-700 flex items-center" style={{ gap: 'var(--space-8)' }}>
+                                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                  <span>{alert}</span>
+                                </Text>
                               ))}
-                        </div>
-                      </Card>
-                    ))}
+                            </div>
+                          </Card>
+                        )}
                       </Grid>
-                  </div>
-                )}
+                    </div>
+                  )}
                 </div>
               </TabPanel>
               <TabPanel>
-                <div className="space-y-8">
-                  {/* Sales Opportunities Section */}
+                <div style={{ gap: 'var(--space-34)' }} className="space-y-8">
+                  {/* High-Priority Dealer Conversations */}
                   {needingImprovement.length > 0 && (
-                    <div className="space-y-6">
-                      <div className="section-header">
-                        <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
-                          <Target className="w-5 h-5 text-orange-600" />
+                    <div style={{ gap: 'var(--space-21)' }} className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                          <div className="icon-container bg-orange-100">
+                            <Target className="w-5 h-5 text-orange-600" />
+                          </div>
+                          <div>
+                            <h2 className="text-perfect-2xl font-bold text-gray-900">Priority Dealer Conversations</h2>
+                            <p className="text-perfect-lg text-gray-600">High-priority conversations requiring attention</p>
+                          </div>
                         </div>
-                        <div>
-                          <h2 className="section-title text-gray-900">Sales Opportunities Identified</h2>
-                          <p className="section-subtitle text-gray-600">High-priority conversations requiring sales attention</p>
-                        </div>
-                        <div className="badge-warning flex items-center space-x-2 ml-auto">
+                        <div className="flex items-center status-warning" style={{ gap: 'var(--space-8)' }}>
                           <AlertTriangle className="w-4 h-4" />
-                          <span>{needingImprovement.length} OPPORTUNITIES</span>
+                          <span>{needingImprovement.length} PRIORITY ITEMS</span>
                         </div>
                       </div>
                       
                       {needingImprovement.map((conversation: any, cIdx: number) => (
-                        <Card key={cIdx} className="conversation-card priority">
-                          <div className="flex items-start justify-between mb-6">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center border border-orange-200">
-                                <Target className="w-6 h-6 text-orange-600" />
+                        <Card key={cIdx} className="card-premium border-l-4 border-orange-500 hover-lift" style={{ padding: 'var(--space-34)' }}>
+                          <div className="flex items-start justify-between" style={{ marginBottom: 'var(--space-21)' }}>
+                            <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                              <div className="icon-container bg-orange-100 border border-orange-200">
+                                <Building2 className="w-6 h-6 text-orange-600" />
                               </div>
                               <div>
-                                <h3 className="text-title text-gray-900">Customer Interaction - Sales Opportunity</h3>
-                                <div className="flex items-center space-x-2 mt-1">
+                                <h3 className="text-perfect-xl font-bold text-gray-900">{conversation.customerType} - {conversation.deviceInterest}</h3>
+                                <div className="flex items-center" style={{ gap: 'var(--space-8)', marginTop: 'var(--space-5)' }}>
                                   <Clock className="w-4 h-4 text-gray-400" />
-                                  <Text className="text-caption text-gray-500">
+                                  <Text className="text-perfect-sm text-gray-500">
                             {new Date(conversation.originalTimestamp).toLocaleString()}
                           </Text>
                         </div>
                               </div>
                             </div>
                             <button
-                              className="button-primary flex items-center space-x-2"
+                              className="btn-primary focus-perfect flex items-center"
+                              style={{ gap: 'var(--space-8)', padding: 'var(--space-13) var(--space-21)' }}
                               onClick={() => toggleConversationExpansion(cIdx)}
                             >
                               {expandedConversations.has(cIdx) ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                              <span>{expandedConversations.has(cIdx) ? 'Hide Full Chat' : 'Show Full Chat'}</span>
+                              <span>{expandedConversations.has(cIdx) ? 'Hide Details' : 'Show Details'}</span>
                             </button>
                           </div>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-                            <div className="flex items-center space-x-3">
-                              <User className="w-5 h-5 text-blue-500" />
+                          {/* Conversation Metadata */}
+                          <div className="grid grid-cols-1 md:grid-cols-3 p-4 bg-gray-50 rounded-lg" style={{ gap: 'var(--space-21)', marginBottom: 'var(--space-21)' }}>
+                            <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                              <Building2 className="w-5 h-5 text-blue-500" />
                               <div>
-                                <Text className="text-caption text-gray-500">Customer Type</Text>
-                                <div className="badge-info">{conversation.customerType}</div>
+                                <Text className="text-perfect-xs text-gray-500">Dealer Type</Text>
+                                <div className="text-perfect-sm font-medium text-blue-600">{conversation.customerType}</div>
                               </div>
                             </div>
                             
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
                               <TrendingUp className="w-5 h-5 text-green-500" />
                               <div>
-                                <Text className="text-caption text-gray-500">Sales Intent</Text>
-                                <div className={conversation.salesIntent === 'buying' ? 'badge-success' : 'badge-warning'}>
+                                <Text className="text-perfect-xs text-gray-500">Intent</Text>
+                                <div className={`text-perfect-sm font-medium ${conversation.salesIntent === 'buying' ? 'text-green-600' : 'text-yellow-600'}`}>
                                   {conversation.salesIntent}
                                 </div>
                               </div>
                             </div>
                             
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
                               <Sofa className="w-5 h-5 text-purple-500" />
                               <div>
-                                <Text className="text-caption text-gray-500">SKU Interest</Text>
-                                <div className="badge-info">{conversation.deviceInterest}</div>
+                                <Text className="text-perfect-xs text-gray-500">Product Interest</Text>
+                                <div className="text-perfect-sm font-medium text-purple-600">{conversation.deviceInterest}</div>
                               </div>
                             </div>
                           </div>
                           
+                          {/* Conversation Details */}
                           {expandedConversations.has(cIdx) ? (
-                            <div className="border-t border-gray-200 pt-6">
-                              <div className="flex items-center space-x-2 mb-4">
+                            <div className="border-t border-gray-200" style={{ paddingTop: 'var(--space-21)' }}>
+                              <div className="flex items-center" style={{ gap: 'var(--space-8)', marginBottom: 'var(--space-13)' }}>
                                 <MessageCircle className="w-5 h-5 text-gray-500" />
-                                <h4 className="text-subtitle text-gray-800">Full Conversation</h4>
+                                <h4 className="text-perfect-lg font-semibold text-gray-800">Full Conversation</h4>
                               </div>
                               <ChatView messages={conversation.messages} />
                             </div>
                           ) : (
-                            <div className="border-t border-gray-200 pt-6">
-                              <div className="flex items-center space-x-2 mb-4">
+                            <div className="border-t border-gray-200" style={{ paddingTop: 'var(--space-21)' }}>
+                              <div className="flex items-center" style={{ gap: 'var(--space-8)', marginBottom: 'var(--space-13)' }}>
                                 <MessageCircle className="w-5 h-5 text-gray-500" />
-                                <h4 className="text-subtitle text-gray-800">Conversation Preview</h4>
+                                <h4 className="text-perfect-lg font-semibold text-gray-800">Conversation Summary</h4>
                               </div>
-                              <div className="bg-gray-50 p-4 rounded-lg">
-                                <Text className="text-gray-700">
-                                  {conversation.messages.slice(0, 2).map((m: any) => m.content).join(' ... ')}
-                                  {conversation.messages.length > 2 && ' ... (click "Show Full Chat" to see complete conversation)'}
+                              <div className="card-premium bg-blue-50 border-blue-200" style={{ padding: 'var(--space-21)' }}>
+                                <Text className="text-perfect-base text-gray-700" style={{ lineHeight: 'var(--leading-normal)' }}>
+                                  {conversation.summary}
                                 </Text>
                               </div>
                             </div>
@@ -713,107 +641,69 @@ export default function Page() {
                     </div>
                   )}
                   
-                  {/* All Conversations Section */}
-                  <div className="space-y-6">
-                    <div className="section-header">
-                      <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                  {/* All Recent Dealer Conversations */}
+                  <div style={{ gap: 'var(--space-21)' }} className="space-y-6">
+                    <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                      <div className="icon-container bg-blue-100">
                         <MessageCircle className="w-5 h-5 text-blue-600" />
                       </div>
                       <div>
-                        <h2 className="section-title text-gray-900">All Recent Conversations</h2>
-                        <p className="section-subtitle text-gray-600">Complete conversation history and analytics</p>
+                        <h2 className="text-perfect-2xl font-bold text-gray-900">Recent Dealer Conversations</h2>
+                        <p className="text-perfect-lg text-gray-600">Complete conversation history and analytics</p>
                       </div>
                     </div>
                     
-                    {others.map((conversation: any, idx: number) => (
-                      <Card key={idx} className="conversation-card">
-                        <div className="flex justify-between items-start mb-6">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center border border-blue-200">
-                              <User className="w-6 h-6 text-blue-600" />
+                    {others.slice(0, 5).map((conversation: any, idx: number) => (
+                      <Card key={idx} className="card-premium hover-lift" style={{ padding: 'var(--space-34)' }}>
+                        <div className="flex justify-between items-start" style={{ marginBottom: 'var(--space-21)' }}>
+                          <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
+                            <div className="icon-container bg-blue-100 border border-blue-200">
+                              <Building2 className="w-6 h-6 text-blue-600" />
                             </div>
                             <div>
-                              <h3 className="text-title text-gray-900">Customer Interaction {idx + 1}</h3>
-                              <div className="flex items-center space-x-2 mt-1">
+                              <h3 className="text-perfect-xl font-bold text-gray-900">{conversation.customerType} Interaction</h3>
+                              <div className="flex items-center" style={{ gap: 'var(--space-8)', marginTop: 'var(--space-5)' }}>
                                 <Clock className="w-4 h-4 text-gray-400" />
-                                <Text className="text-caption text-gray-500">
+                                <Text className="text-perfect-sm text-gray-500">
                                   {new Date(conversation.originalTimestamp).toLocaleString()}
                                 </Text>
                               </div>
                             </div>
                           </div>
                           <button
-                            className="button-primary flex items-center space-x-2"
+                            className="btn-primary focus-perfect flex items-center"
+                            style={{ gap: 'var(--space-8)', padding: 'var(--space-13) var(--space-21)' }}
                             onClick={() => toggleConversationExpansion(idx + 1000)}
                           >
                             {expandedConversations.has(idx + 1000) ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                            <span>{expandedConversations.has(idx + 1000) ? 'Hide Full Chat' : 'Show Full Chat'}</span>
+                            <span>{expandedConversations.has(idx + 1000) ? 'Hide Details' : 'Show Details'}</span>
                           </button>
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <User className="w-5 h-5 text-blue-500" />
-                            <div>
-                              <Text className="text-caption text-gray-500">Customer</Text>
-                              <div className="badge-neutral">{conversation.customerType}</div>
-                            </div>
+                        {/* Quick Summary */}
+                        {!expandedConversations.has(idx + 1000) && (
+                          <div className="card-premium bg-gray-50" style={{ padding: 'var(--space-21)', marginBottom: 'var(--space-21)' }}>
+                            <Text className="text-perfect-base text-gray-700" style={{ lineHeight: 'var(--leading-normal)' }}>
+                              {conversation.summary}
+                            </Text>
                           </div>
-                          
-                          <div className="flex items-center space-x-3">
-                            <TrendingUp className="w-5 h-5 text-green-500" />
-                            <div>
-                              <Text className="text-caption text-gray-500">Intent</Text>
-                              <div className="badge-success">{conversation.salesIntent}</div>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-center space-x-3">
-                            <Sofa className="w-5 h-5 text-purple-500" />
-                            <div>
-                              <Text className="text-caption text-gray-500">SKU</Text>
-                              <div className="badge-info">{conversation.deviceInterest}</div>
-                            </div>
-                          </div>
-                          
-                          {conversation.competitorMentioned && (
-                            <div className="flex items-center space-x-3">
-                              <AlertTriangle className="w-5 h-5 text-red-500" />
-                              <div>
-                                <Text className="text-caption text-gray-500">Competitor</Text>
-                                <div className="badge-warning">{conversation.competitorMentioned}</div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
+                        )}
                         
-                        {expandedConversations.has(idx + 1000) ? (
-                          <div className="border-t border-gray-200 pt-6">
-                            <div className="flex items-center space-x-2 mb-4">
+                        {/* Full Conversation */}
+                        {expandedConversations.has(idx + 1000) && (
+                          <div className="border-t border-gray-200" style={{ paddingTop: 'var(--space-21)' }}>
+                            <div className="flex items-center" style={{ gap: 'var(--space-8)', marginBottom: 'var(--space-13)' }}>
                               <MessageCircle className="w-5 h-5 text-gray-500" />
-                              <h4 className="text-subtitle text-gray-800">Full Conversation</h4>
-                      </div>
-                          <ChatView messages={conversation.messages} />
-                        </div>
-                        ) : (
-                          <div className="border-t border-gray-200 pt-6">
-                            <div className="flex items-center space-x-2 mb-4">
-                              <MessageCircle className="w-5 h-5 text-gray-500" />
-                              <h4 className="text-subtitle text-gray-800">Conversation Preview</h4>
+                              <h4 className="text-perfect-lg font-semibold text-gray-800">Full Conversation</h4>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                              <Text className="text-gray-700">
-                                {conversation.messages.slice(0, 2).map((m: any) => m.content).join(' ... ')}
-                                {conversation.messages.length > 2 && ' ... (click "Show Full Chat" to see complete conversation)'}
-                              </Text>
-                            </div>
-                        </div>
-                      )}
-                    </Card>
-                  ))}
+                            <ChatView messages={conversation.messages} />
+                          </div>
+                        )}
+                      </Card>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </TabPanel>
+              </TabPanel>
             <TabPanel>
                 <EnhancedTopicAnalysis />
             </TabPanel>

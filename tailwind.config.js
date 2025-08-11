@@ -11,6 +11,17 @@ module.exports = {
     current: 'currentColor',
     extend: {
       colors: {
+        // Rural King Farm Theme Colors
+        farm: {
+          primary: '#16a34a',      // Green-600
+          secondary: '#d97706',    // Amber-600
+          accent: '#7c3aed',       // Violet-600
+          earth: '#92400e',        // Amber-800
+          grass: '#15803d',        // Green-700
+          wheat: '#f59e0b',        // Amber-500
+          soil: '#78350f',         // Amber-900
+          sky: '#0ea5e9',          // Sky-500
+        },
         tremor: {
           brand: {
             faint: '#eff6ff',

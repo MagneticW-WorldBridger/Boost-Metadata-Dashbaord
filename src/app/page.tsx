@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@tremor/react';
-import { Activity, BarChart3, Brain, Users, Sofa } from 'lucide-react';
+import { Activity, BarChart3, Brain, Users, Tractor, Sparkles, ArrowRight, Zap } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
@@ -23,82 +23,110 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 flex items-center justify-center">
-      <div className="max-w-4xl mx-auto text-center px-8">
-        {/* Logo and Branding */}
-        <div className="mb-12">
-          <div className="flex items-center justify-center space-x-6 mb-8">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center border border-amber-200">
-                <Sofa className="w-8 h-8 text-amber-600" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900">Hooker Furniture</h1>
-                <p className="text-lg text-gray-600">Analytics Dashboard</p>
-              </div>
-            </div>
-            <div className="h-16 w-px bg-gray-300"></div>
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center border border-blue-200">
-                <Brain className="w-8 h-8 text-blue-600" />
+    <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-amber-50 flex items-center justify-center animate-fade-in">
+      <div className="max-w-6xl mx-auto text-center" style={{ padding: 'var(--space-55)' }}>
+        {/* Perfect Logo Section - Golden Ratio Layout */}
+        <div style={{ marginBottom: 'var(--space-89)' }} className="animate-slide-up">
+          <div className="flex items-center justify-center" style={{ gap: 'var(--space-55)', marginBottom: 'var(--space-34)' }}>
+            {/* Left Brand Group */}
+            <div className="gestalt-group flex items-center" style={{ gap: 'var(--space-21)', padding: 'var(--space-21)' }}>
+              <div className="icon-container bg-green-100 border border-green-200">
+                <Tractor className="text-green-600" style={{ width: 'var(--space-34)', height: 'var(--space-34)' }} />
               </div>
               <div className="text-left">
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                  Dealer Intelligence Center
+                <h1 className="text-perfect-4xl font-bold text-gray-900">Rural King</h1>
+                <p className="text-perfect-lg text-gray-600">Farm Supply Analytics Dashboard</p>
+              </div>
+            </div>
+            
+            {/* Visual Separator - Perfect Golden Ratio */}
+            <div style={{ 
+              height: 'var(--space-89)', 
+              width: '1px', 
+              background: 'linear-gradient(to bottom, transparent, var(--gray-300), transparent)' 
+            }}></div>
+            
+            {/* Right AI Group */}
+            <div className="gestalt-group flex items-center" style={{ gap: 'var(--space-21)', padding: 'var(--space-21)' }}>
+              <div className="icon-container bg-blue-100 border border-blue-200">
+                <Brain className="text-blue-600" style={{ width: 'var(--space-34)', height: 'var(--space-34)' }} />
+              </div>
+              <div className="text-left">
+                <h1 className="text-perfect-4xl font-bold bg-gradient-to-r from-green-600 to-amber-600 bg-clip-text text-transparent">
+                  Store Intelligence Center
                 </h1>
-                <p className="text-lg text-gray-600 mt-2">B2B Conversation Analytics Platform</p>
+                <div className="flex items-center" style={{ gap: 'var(--space-8)', marginTop: 'var(--space-8)' }}>
+                  <Sparkles className="text-blue-500" style={{ width: 'var(--space-21)', height: 'var(--space-21)' }} />
+                  <p className="text-perfect-lg text-gray-600">AI-Powered Farm Supply Analytics</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 mx-auto">
-              <BarChart3 className="w-6 h-6 text-blue-600" />
+        {/* Perfect Feature Grid - Fibonacci Spacing */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 animate-slide-up" 
+          style={{ 
+            gap: 'var(--space-34)', 
+            marginBottom: 'var(--space-89)' 
+          }}
+        >
+          <div className="card-premium hover:scale-105 transition-all duration-300" style={{ padding: 'var(--space-34)' }}>
+            <div className="icon-container bg-blue-100 mx-auto" style={{ marginBottom: 'var(--space-21)' }}>
+              <BarChart3 className="text-blue-600" style={{ width: 'var(--space-21)', height: 'var(--space-21)' }} />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Chatbot Analytics</h3>
-            <p className="text-gray-600">Monitor dealer conversations and track chatbot performance across all interactions.</p>
+            <h3 className="text-perfect-xl font-semibold text-gray-900" style={{ marginBottom: 'var(--space-13)' }}>
+              Customer Analytics
+            </h3>
+            <p className="text-perfect-base text-gray-600">
+              Monitor farm supply conversations and track customer interactions across all 135+ Rural King locations with AI-powered insights.
+            </p>
           </div>
           
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4 mx-auto">
-              <Users className="w-6 h-6 text-green-600" />
+          <div className="card-premium hover:scale-105 transition-all duration-300" style={{ padding: 'var(--space-34)' }}>
+            <div className="icon-container bg-green-100 mx-auto" style={{ marginBottom: 'var(--space-21)' }}>
+              <Users className="text-green-600" style={{ width: 'var(--space-21)', height: 'var(--space-21)' }} />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Dealer Intelligence</h3>
-            <p className="text-gray-600">AI-powered insights into dealer sentiment and conversation patterns.</p>
+            <h3 className="text-perfect-xl font-semibold text-gray-900" style={{ marginBottom: 'var(--space-13)' }}>
+              Store Intelligence
+            </h3>
+            <p className="text-perfect-base text-gray-600">
+              AI-powered insights into customer sentiment, product preferences, and store performance optimization across the Rural King network.
+            </p>
           </div>
           
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4 mx-auto">
-              <Activity className="w-6 h-6 text-purple-600" />
+          <div className="card-premium hover:scale-105 transition-all duration-300" style={{ padding: 'var(--space-34)' }}>
+            <div className="icon-container bg-amber-100 mx-auto" style={{ marginBottom: 'var(--space-21)' }}>
+              <Tractor className="text-amber-600" style={{ width: 'var(--space-21)', height: 'var(--space-21)' }} />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Live Manufacturing</h3>
-            <p className="text-gray-600">Track facility performance and identify inventory optimization opportunities.</p>
+            <h3 className="text-perfect-xl font-semibold text-gray-900" style={{ marginBottom: 'var(--space-13)' }}>
+              Farm Supply Insights
+            </h3>
+            <p className="text-perfect-base text-gray-600">
+              Track product performance, seasonal trends, and customer needs for farm supplies, tools, feed, and rural lifestyle products.
+            </p>
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="space-y-6">
+        {/* Perfect CTA Section */}
+        <div className="animate-slide-up">
           <Button 
-            size="xl" 
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={goToAnalytics}
+            className="btn-premium group"
+            style={{ 
+              padding: 'var(--space-21) var(--space-34)',
+              fontSize: 'var(--space-21)',
+              fontWeight: '600'
+            }}
           >
-            Enter Analytics Dashboard
+            <span>Launch Rural King Analytics</span>
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" style={{ width: 'var(--space-21)', height: 'var(--space-21)' }} />
           </Button>
           
-          <p className="text-sm text-gray-500">
-            Auto-redirecting in 3 seconds... <br />
-            or click above to access immediately
+          <p className="text-perfect-base text-gray-500 mt-4">
+            Redirecting automatically in <span className="font-semibold text-green-600">3 seconds</span>
           </p>
-        </div>
-
-        {/* Status Indicator */}
-        <div className="mt-12 flex items-center justify-center space-x-3 text-sm text-gray-500">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-          <span>System Online • All Services Operational</span>
         </div>
       </div>
     </main>
