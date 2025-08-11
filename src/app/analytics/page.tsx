@@ -606,7 +606,7 @@ export default function Page() {
                             </div>
                             
                             <div className="flex items-center" style={{ gap: 'var(--space-13)' }}>
-                              <Sofa className="w-5 h-5 text-purple-500" />
+                              <Tractor className="w-5 h-5 text-purple-500" />
                               <div>
                                 <Text className="text-perfect-xs text-gray-500">Product Interest</Text>
                                 <div className="text-perfect-sm font-medium text-purple-600">{conversation.deviceInterest}</div>

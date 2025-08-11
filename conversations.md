@@ -48,9 +48,9 @@
 
 ### Conversation 5: Horse Owner - Fencing Project
 **Customer**: I need to fence in about 5 acres for my horses. What type of fencing material would you recommend? I want something that's safe for horses but won't break the bank.
-
+ 
 **Rural King Assistant**: For horses, I recommend our Horse Guard No-Climb fencing. It's specifically designed for equine safety with small openings that prevent hoof entrapment. For 5 acres, you'll need approximately 1,800 feet of fencing. What's your budget range?
-
+
 **Customer**: I'd like to keep it under $5,000 if possible. Do you have any installation services or is it DIY?
 
 **Rural King Assistant**: The Horse Guard fencing will run about $3,200 for materials, keeping you well under budget. We offer installation services for an additional $1,200, or you can DIY. We have installation guides and all the tools you'll need. Would you like me to calculate the exact materials list?

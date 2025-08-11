@@ -25,7 +25,7 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
     {
       id: '1',
       role: 'assistant',
-      content: 'Hello! I\'m your AI analytics assistant. I have access to all your customer conversation data and can provide deep insights, trends, and actionable recommendations. What would you like to know?',
+      content: 'Hello! I\'m your Rural King AI analytics assistant. I have access to all your farm supply customer conversation data and can provide deep insights, trends, and actionable recommendations for your 135+ stores. What would you like to know?',
       timestamp: new Date()
     }
   ]);
@@ -35,37 +35,37 @@ export function AIChatIntelligence({ isFullscreen, onClose }: AIChatIntelligence
 
   const suggestedQueries = [
     {
-      text: "What are the most common dealer inquiries?",
+      text: "What are the most common customer inquiries?",
       category: "Topics",
       icon: MessageSquare,
       color: "blue"
     },
     {
-      text: "Which SKUs are dealers most interested in?",
+      text: "Which farm supply products are customers most interested in?",
       category: "Products", 
       icon: TrendingUp,
       color: "orange"
     },
     {
-      text: "What are the main warranty claim issues?",
+      text: "What are the main equipment maintenance issues?",
       category: "Support",
       icon: Zap,
       color: "purple"
     },
     {
-      text: "How many custom order requests do we get?",
+      text: "How many feed and nutrition requests do we get?",
       category: "Orders",
       icon: Star,
       color: "green"
     },
     {
-      text: "What are the top dealer concerns?",
+      text: "What are the top customer concerns?",
       category: "Issues",
       icon: Lightbulb,
       color: "amber"
     },
     {
-      text: "Which dealers seem ready to place large orders?",
+      text: "Which customers seem ready for large purchases?",
       category: "Sales",
       icon: TrendingUp,
       color: "emerald"
