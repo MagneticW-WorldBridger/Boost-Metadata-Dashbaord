@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Chat Analytics Dashboard',
-  description: 'Analytics dashboard for chat interactions',
+  title: 'Rural King Analytics',
+  description: 'AI-powered analytics dashboard for Rural King farm supply stores',
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card, Title, Text, BarChart, Grid, Metric, List, ListItem, Badge, Tab, TabList, TabGroup, TabPanel, TabPanels, Divider, Button } from '@tremor/react';
 import { ChatView, ChatSummary, ResponsePatternView } from '../components/ChatView';
 import type { Message } from '../utils/chatParser';
@@ -138,6 +139,10 @@ const getCategoryColor = (category: string): string => {
 };
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const isEmbedMode = searchParams.get('embed') === '1';
+  const theme = searchParams.get('theme') || 'default';
+  
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [curatedData, setCuratedData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -226,10 +231,20 @@ export default function Page() {
     setExpandedConversations(newExpanded);
   };
 
+  // Apply embed mode styles
+  const containerStyles = isEmbedMode 
+    ? "h-screen overflow-hidden bg-white" 
+    : "min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 relative";
+    
+  const wrapperStyles = isEmbedMode 
+    ? "max-w-full h-full p-4 space-y-4 overflow-y-auto" 
+    : "max-w-[90rem] mx-auto p-8 space-y-12";
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 relative">
-      <div className="max-w-[90rem] mx-auto p-8 space-y-12">
-        {/* Professional Header */}
+    <main className={containerStyles}>
+      <div className={wrapperStyles}>
+        {/* Professional Header - Hidden in embed mode */}
+        {!isEmbedMode && (
         <div className="header-card">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-6">
@@ -275,6 +290,7 @@ export default function Page() {
             </div>
           </div>
         </div>
+        )}
 
         {/* Professional KPI Cards */}
         <Grid numItems={1} numItemsSm={2} numItemsLg={4} className="gap-6">

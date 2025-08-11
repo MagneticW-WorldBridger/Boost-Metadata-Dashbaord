@@ -1,25 +1,32 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@tremor/react';
 import { Activity, BarChart3, Brain, Users, Tractor, Sparkles, ArrowRight, Zap } from 'lucide-react';
 
 export default function HomePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // Check if we're in embed mode
+  const isEmbedMode = searchParams.get('embed') === '1';
+  const theme = searchParams.get('theme') || 'default';
 
   // Auto-redirect to analytics after 3 seconds or let user click to go immediately
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/analytics');
+      const analyticsUrl = `/analytics${isEmbedMode ? '?embed=1' : ''}${theme !== 'default' ? `&theme=${theme}` : ''}`;
+      router.push(analyticsUrl);
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [router]);
+  }, [router, isEmbedMode, theme]);
 
   const goToAnalytics = () => {
-    router.push('/analytics');
+    const analyticsUrl = `/analytics${isEmbedMode ? '?embed=1' : ''}${theme !== 'default' ? `&theme=${theme}` : ''}`;
+    router.push(analyticsUrl);
   };
 
   return (
