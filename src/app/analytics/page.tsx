@@ -240,6 +240,32 @@ export default function Page() {
     ? "max-w-full h-full p-4 space-y-4 overflow-y-auto" 
     : "max-w-[90rem] mx-auto p-8 space-y-12";
 
+  // Derived availability flags
+  const backendConnected = Boolean(data);
+
+  // Stacked channel daily data (placeholder if backend not wired)
+  const channelDailyData = [
+    { date: 'Mon', IG: 34, FB: 58, Webchat: 95 },
+    { date: 'Tue', IG: 41, FB: 62, Webchat: 102 },
+    { date: 'Wed', IG: 29, FB: 55, Webchat: 88 },
+    { date: 'Thu', IG: 37, FB: 60, Webchat: 97 },
+    { date: 'Fri', IG: 50, FB: 75, Webchat: 120 },
+    { date: 'Sat', IG: 64, FB: 81, Webchat: 132 },
+    { date: 'Sun', IG: 45, FB: 69, Webchat: 110 },
+  ];
+
+  const mockTopCustomers = [
+    { name: 'John Miller', email: 'john.miller@example.com', phone: '615-555-0182', total_spent: 4820 },
+    { name: 'Emily Carter', email: 'emily.carter@example.com', phone: '217-555-0144', total_spent: 4310 },
+    { name: 'Michael Brooks', email: 'michael.brooks@example.com', phone: '740-555-0121', total_spent: 3895 },
+    { name: 'Sarah Thompson', email: 'sarah.t@example.com', phone: '812-555-0199', total_spent: 3720 },
+    { name: 'Ranch Co. Supply', email: '', phone: '309-555-0107', total_spent: 3510 },
+  ];
+
+  const topCustomers = (curatedData?.topCustomers && curatedData.topCustomers.length > 0)
+    ? curatedData.topCustomers
+    : mockTopCustomers;
+
   return (
     <main className={containerStyles}>
       <div className={wrapperStyles}>
@@ -291,6 +317,49 @@ export default function Page() {
           </div>
         </div>
         )}
+
+        {/* Bento: Channel Volume + Top Customers */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="rk-card p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="font-semibold">Channel Volume (Daily)</div>
+              <div className="rk-badge rk-badge--info">Stacked</div>
+            </div>
+            <BarChart
+              className="h-72"
+              data={channelDailyData}
+              index="date"
+              categories={["IG", "FB", "Webchat"]}
+              colors={["pink", "blue", "emerald"]}
+              stack={true}
+              valueFormatter={(v) => `${v}`}
+            />
+          </div>
+
+          <div className="rk-card p-4">
+            <div className="font-semibold mb-2">Top Customers</div>
+            <div className="rk-table-wrap">
+              <table className="rk-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email / Phone</th>
+                    <th className="text-right">Total Spent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topCustomers.slice(0,5).map((c: any, idx: number) => (
+                    <tr key={idx}>
+                      <td>{c.name}</td>
+                      <td className="text-gray-600">{c.email || c.phone || '—'}</td>
+                      <td className="text-right">{c.total_spent ? `$${c.total_spent.toLocaleString()}` : '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
         {/* Professional KPI Cards */}
         <Grid numItems={1} numItemsSm={2} numItemsLg={4} className="gap-6">

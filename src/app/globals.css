@@ -989,3 +989,161 @@
     transform: translateX(0);
   }
 } 
+
+/* ==========================================
+   Rural King Design Tokens & UI Utilities
+   ========================================== */
+:root {
+  --rk-primary: #C8102E; /* Rural King red */
+  --rk-accent: #F59E0B;  /* Amber */
+  --rk-info: #2563EB;    /* Blue-600 */
+  --rk-success: #10B981; /* Emerald-500 */
+  --rk-surface: #FFFFFF; /* White */
+  --rk-text: #111827;    /* Gray-900 */
+  --rk-muted: #6B7280;   /* Gray-500 */
+  --rk-radius: 12px;
+  --rk-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+}
+
+/* Base text and background wiring */
+body {
+  color: var(--rk-text);
+  background-color: var(--rk-surface);
+}
+
+/* Focus visible for accessibility (AA/AAA) */
+*:focus-visible {
+  outline: 3px solid var(--rk-info);
+  outline-offset: 2px;
+  border-radius: calc(var(--rk-radius) / 2);
+}
+
+/* Topbar */
+.rk-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--rk-surface);
+  border-bottom: 1px solid #E5E7EB; /* gray-200 */
+}
+.rk-topbar .rk-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.rk-topbar .rk-brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+.rk-topbar .rk-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Buttons */
+.rk-btn {
+  border: 1px solid transparent;
+  border-radius: var(--rk-radius);
+  padding: 10px 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+}
+.rk-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+.rk-btn--primary {
+  background: var(--rk-primary);
+  color: #fff;
+}
+.rk-btn--primary:hover { filter: brightness(0.98); }
+.rk-btn--primary:active { filter: brightness(0.92); }
+
+.rk-btn--subtle {
+  background: #F3F4F6; /* gray-100 */
+  color: var(--rk-text);
+  border-color: #E5E7EB;
+}
+.rk-btn--subtle:hover { background: #E5E7EB; }
+
+.rk-btn--danger {
+  background: #DC2626; /* red-600 */
+  color: #fff;
+}
+.rk-btn--danger:hover { filter: brightness(0.97); }
+
+/* Badges */
+.rk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.rk-badge--success { background: #ECFDF5; color: #065F46; border-color: #A7F3D0; }
+.rk-badge--warning { background: #FFFBEB; color: #92400E; border-color: #FDE68A; }
+.rk-badge--info    { background: #EFF6FF; color: #1E40AF; border-color: #BFDBFE; }
+.rk-badge--danger  { background: #FEF2F2; color: #991B1B; border-color: #FECACA; }
+.rk-badge--neutral { background: #F3F4F6; color: #374151; border-color: #E5E7EB; }
+
+/* Hero */
+.rk-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px;
+  border-radius: var(--rk-radius);
+  background: linear-gradient(180deg, #FFFFFF, #FAFAFA);
+  border: 1px solid #E5E7EB;
+  box-shadow: var(--rk-shadow);
+}
+.rk-hero .rk-hero-titles h1 { font-size: 22px; font-weight: 800; }
+.rk-hero .rk-hero-titles p { color: var(--rk-muted); }
+.rk-hero .rk-hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Cards */
+.rk-card {
+  background: var(--rk-surface);
+  border: 1px solid #E5E7EB;
+  border-radius: var(--rk-radius);
+  box-shadow: var(--rk-shadow);
+}
+
+/* Tables */
+.rk-table-wrap { overflow: auto; border-radius: var(--rk-radius); border: 1px solid #E5E7EB; }
+.rk-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.rk-table thead th {
+  position: sticky; top: 0; z-index: 1;
+  background: #F9FAFB; color: #374151; text-align: left;
+  font-size: 12px; font-weight: 700;
+  border-bottom: 1px solid #E5E7EB;
+}
+.rk-table th, .rk-table td { padding: 12px 14px; }
+.rk-table tbody tr + tr td { border-top: 1px solid #F3F4F6; }
+
+/* Skeletons */
+.rk-skeleton { background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 8px; }
+
+/* Banners */
+.rk-banner { padding: 12px 14px; border-radius: var(--rk-radius); border: 1px solid; }
+.rk-banner.info { background: #EFF6FF; border-color: #BFDBFE; color: #1E40AF; }
+.rk-banner.warning { background: #FFFBEB; border-color: #FDE68A; color: #92400E; }
+.rk-banner.success { background: #ECFDF5; border-color: #A7F3D0; color: #065F46; }
+.rk-banner.danger { background: #FEF2F2; border-color: #FECACA; color: #991B1B; }
+
+/* Utility */
+.rk-surface { background: var(--rk-surface); }
+.rk-text-muted { color: var(--rk-muted); } 

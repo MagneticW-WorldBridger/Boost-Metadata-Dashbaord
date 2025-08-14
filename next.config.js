@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.ruralking.com',
+      },
+    ],
+  },
   async headers() {
     return [
       {
@@ -8,16 +16,16 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://woodstock-technical-chatbot-full-fe.vercel.app"
+            value: "frame-ancestors 'self'", 
           },
           {
             key: 'X-Frame-Options',
-            value: ''
-          }
+            value: '',
+          },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig; 
